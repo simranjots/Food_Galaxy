@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "384819755919",
+    "firebase_url": "https://food-galaxy-39d93.firebaseio.com",
+    "project_id": "food-galaxy-39d93",
+    "storage_bucket": "food-galaxy-39d93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384819755919:android:331346c6c97507a5d7a9fa",
+        "android_client_info": {
+          "package_name": "com.example.foodgalaxy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384819755919-fuo8860jjne4k0miu7j08ri34u6e3v08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodgalaxy",
+            "certificate_hash": "f63e1fdf2b1e899b5cb23c817488df9873f885e7"
+          }
+        },
+        {
+          "client_id": "384819755919-1kki8sb13l58i1c67g3cdmq62ogoqr0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyB5Xyd_UqbuoEsFI5-AlAbXiERg4DZRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384819755919-1kki8sb13l58i1c67g3cdmq62ogoqr0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
