@@ -1,9 +1,9 @@
 package com.example.foodgalaxy;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import com.example.foodgalaxy.Common.Common;
+import com.example.foodgalaxy.Model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,10 +27,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignInActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword;
+    private EditText inputPhone, inputPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
@@ -46,19 +51,25 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
+        //Init Firebase
 
-            // Configure Google Sign In
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    // for the requestIdToken, this is in the values.xml file that
-                    // is generated from your google-services.json
-                    .requestIdToken(getString(R.string.default_web_client_id))
-                    .requestEmail()
-                    .build();
-            // Build a GoogleSignInClient with the options specified by gso.
-            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference user= database.getReference("User");
+
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                // for the requestIdToken, this is in the values.xml file that
+                // is generated from your google-services.json
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
 
@@ -71,7 +82,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
 
-        inputEmail = (EditText) findViewById(R.id.email);
+        inputPhone = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnSignup = (Button) findViewById(R.id.signUp);
@@ -87,7 +98,6 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
-
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,11 +108,14 @@ public class SignInActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
+                final ProgressDialog mDialog = new ProgressDialog(SignInActivity.this);
+                mDialog.setMessage("Please Wait");
+                mDialog.show();
+                String email = inputPhone.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter Phone Number!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -114,28 +127,43 @@ public class SignInActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 //authenticate user
-                auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                progressBar.setVisibility(View.GONE);
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        inputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(SignInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
+                mDialog.setMessage("Please Wait");
+                mDialog.show();
+                user.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        //Chech if user exist
+                        if (dataSnapshot.child(inputPhone.getText().toString()).exists()) {
+
+                            //Get User Info
+                            mDialog.dismiss();
+                            User user = dataSnapshot.child(inputPhone.getText().toString()).getValue(User.class);
+                            user.setPhone(inputPhone.getText().toString());//set phone
+                            if (user.getPassword().equals(inputPassword.getText().toString())) {
+
+                                Intent homeIntent= new Intent(SignInActivity.this,MainActivity.class);
+                                Common.currentUser=user;
+                                startActivity(homeIntent);
+                                finish();
+
                             }
-                        });
+                            else{
+                                Toast.makeText(SignInActivity.this, "Sign In Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else {
+                            mDialog.dismiss();
+                            Toast.makeText(SignInActivity.this, "User Does not exist! ", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
 

@@ -77,7 +77,6 @@ public class SignUpActivity extends AppCompatActivity {
                 final ProgressDialog mDialog = new ProgressDialog(SignUpActivity.this);
                 mDialog.setMessage("Please Wait");
                 mDialog.show();
-
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
                 String phone = inputEmail.getText().toString().trim();
