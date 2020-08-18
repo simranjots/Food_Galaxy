@@ -2,6 +2,7 @@ package com.example.foodgalaxy;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -221,6 +222,17 @@ public class SignInActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = auth.getCurrentUser();
+                            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                            if (acct != null) {
+                                String personName = acct.getDisplayName();
+                                String personGivenName = acct.getGivenName();
+                                String personFamilyName = acct.getFamilyName();
+                                String personEmail = acct.getEmail();
+                                String personId = acct.getId();
+                                Uri personPhoto = acct.getPhotoUrl();
+
+                            }
+                            Common.GoogleUser=acct;
                            // Log.d(TAG, "signInWithCredential:success: currentUser: " + user.getEmail());
                             showToastMessage("Firebase Authentication Succeeded ");
                             launchMainActivity(user);
