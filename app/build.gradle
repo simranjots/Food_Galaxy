@@ -41,6 +41,28 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.2'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.stepstone.apprating:app-rating:2.0.0'
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
+    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.google.firebase:firebase-core:17.4.4'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.firebaseui:firebase-ui-database:1.2.0'
 }
