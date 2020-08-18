@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pickup_delivery">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="327dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType=""
+        android:text="How would you like to get your food?"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="284dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/btn_back"
+        android:drawableLeft="@drawable/ic_baseline_local_shipping_24"
+        android:text="Delivery      >"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:layout_width="284dp"
+        android:layout_height="126dp"
+        android:background="@drawable/btn_back"
+        android:drawableLeft="@drawable/ic_baseline_work_24"
+        android:text="Pick Up      >"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="360dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
