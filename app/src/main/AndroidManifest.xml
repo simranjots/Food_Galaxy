@@ -13,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".RestaurantDetailPage"></activity>
+        <activity android:name=".RestaurantsList" />
+        <activity
+            android:name=".SizeAndDateActivity"
+            android:label="@string/title_activity_size_and_date"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MenuActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignInActivity">
             <intent-filter>
@@ -22,8 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cart"></activity>
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".PickupDeliveryActivity" />
+        <activity android:name=".Cart" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".DeliveryAddressDetails" />
         <activity android:name=".MainActivity" />
     </application>
 

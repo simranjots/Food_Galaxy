@@ -25,31 +25,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/btnDelivery"
         android:layout_width="284dp"
         android:layout_height="126dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/btn_back"
         android:drawableLeft="@drawable/ic_baseline_local_shipping_24"
         android:text="Delivery      >"
-        android:textSize="30dp"
         android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintVertical_bias="0.06"
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:id="@+id/btnPickup"
         android:layout_width="284dp"
         android:layout_height="126dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/btn_back"
         android:drawableLeft="@drawable/ic_baseline_work_24"
         android:text="Pick Up      >"
-        android:textSize="30dp"
         android:textAlignment="center"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="360dp" />
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,7 +75,7 @@ public class SignInActivity extends AppCompatActivity {
 
 
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            startActivity(new Intent(SignInActivity.this, PickupDeliveryActivity.class));
             finish();
         }
 
@@ -143,7 +143,7 @@ public class SignInActivity extends AppCompatActivity {
                             user.setPhone(inputPhone.getText().toString());//set phone
                             if (user.getPassword().equals(inputPassword.getText().toString())) {
 
-                                Intent homeIntent= new Intent(SignInActivity.this,MainActivity.class);
+                                Intent homeIntent= new Intent(SignInActivity.this,PickupDeliveryActivity.class);
                                 Common.currentUser=user;
                                 startActivity(homeIntent);
                                 finish();
@@ -186,7 +186,7 @@ public class SignInActivity extends AppCompatActivity {
 
         if (auth.getCurrentUser() != null) {
             Toast.makeText(this, "Currently Logged in: " + auth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, PickupDeliveryActivity.class));
             finish();
         }
     }

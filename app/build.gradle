@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.3.1'
     implementation 'com.google.gms:google-services:4.3.3'
     implementation 'com.google.firebase:firebase-auth:19.3.2'
+    implementation 'androidx.navigation:navigation-fragment:2.1.0'
+    implementation 'androidx.navigation:navigation-ui:2.1.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
     implementation 'com.stepstone.apprating:app-rating:2.0.0'
@@ -63,7 +65,7 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
 
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
     // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
     implementation 'com.squareup.picasso:picasso:2.5.2'
