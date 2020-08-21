@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
+    long id ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
                         //check if already user phone
                         if(dataSnapshot.child(inputPhone.getText().toString()).exists()){
                             progressBar.setVisibility(View.GONE);
+                            id = (dataSnapshot.getChildrenCount());
                             Toast.makeText(SignUpActivity.this, "Phone number already registered", Toast.LENGTH_SHORT).show();
                             mDialog.dismiss();
                         }
@@ -128,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             progressBar.setVisibility(View.GONE);
                                             if (task.isSuccessful()) {
                                                 mDialog.dismiss();
-                                                User users = new User(inputEmail.getText().toString(),inputPassword.getText().toString(),inputPhone.getText().toString(),inputAddress.getText().toString());
+                                                User users = new User(id ,inputEmail.getText().toString(),inputPassword.getText().toString(),inputPhone.getText().toString(),inputAddress.getText().toString());
                                                 user.child(inputPhone.getText().toString()).setValue(users);
                                                 Toast.makeText(SignUpActivity.this, "created User With "+inputEmail.getText().toString()+" successfully registered" , Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
@@ -161,4 +163,5 @@ public class SignUpActivity extends AppCompatActivity {
         super.onResume();
         progressBar.setVisibility(View.GONE);
     }
+
 }
