@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.example.foodgalaxy.Model.FoodStyle;
 import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.ViewHolder.RestaurantAdapter;
 
@@ -15,6 +16,7 @@ public class RestaurantsList extends AppCompatActivity {
     ArrayList<Restaurant> restaurantsList = new ArrayList<Restaurant>();
     boolean IsDelivery;
     int size;
+    ArrayList<FoodStyle> listOfStyles = new ArrayList<FoodStyle>();
 
 
     @Override
@@ -33,8 +35,8 @@ public class RestaurantsList extends AppCompatActivity {
     }
 
     public void addData(){
-        restaurantsList.add(new Restaurant("Fisrt restaurant", "60 Castlegrove",20, 50, 1, true,"forexample.com"));
-        restaurantsList.add(new Restaurant("Second restaurant", "60 Castlegrove",10, 50, 1, false,"forexample.com"));
+        restaurantsList.add(new Restaurant(1,"Fisrt restaurant", "60 Castlegrove",20, 50, 1, true,"forexample.com"));
+        restaurantsList.add(new Restaurant(2,"Second restaurant", "60 Castlegrove",10, 50, 1, false,"forexample.com"));
     }
 
     public ArrayList<Restaurant> filterdata(ArrayList<Restaurant> restaurantsList){
@@ -42,12 +44,22 @@ public class RestaurantsList extends AppCompatActivity {
         ArrayList<Restaurant> result = new ArrayList<Restaurant>();
         size = Integer.parseInt(getIntent().getStringExtra("size"));
         IsDelivery = getIntent().getBooleanExtra("IsDelivery", false);
+        listOfStyles = getIntent().getParcelableArrayListExtra("style");
+
 
         for (Restaurant r : restaurantsList)
         {
             if((size >= r.getcMinSize() && size <= r.getcMaxSize()) && IsDelivery == r.isDelivery() ){
-                result.add(r);
+                for(FoodStyle f : listOfStyles)
+                {
+                    if(f.getId() == r.getFS_Id())
+                    {
+                        result.add(r);
+                    }
+                }
             }
+
+
 
         }
 
