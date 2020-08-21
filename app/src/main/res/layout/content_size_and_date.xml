@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/address_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
+        android:inputType=""
+        android:text="Enter Size, Style and Date of Booking"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+  />
+
+    <EditText
+        android:id="@+id/size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Enter Size of catering"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:inputType="number"
+        android:layout_below="@id/editTextTextPersonName2" />
+
+    <EditText
+        android:id="@+id/dateBooking"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Enter date of booking"
+        android:inputType="datetime"
+        android:textColorHint="#FFFFFF"
+        android:layout_below="@id/size"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:id="@+id/btn_date"
+        android:layout_alignBottom="@+id/dateBooking"
+        android:layout_toRightOf="@+id/dateBooking"
+        android:layout_toEndOf="@+id/dateBooking" />
+
+
+
+    <EditText
+        android:id="@+id/dateTimeOfBooking"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Enter Time of booking"
+        android:inputType="datetime"
+        android:textColorHint="#FFFFFF"
+        android:layout_below="@id/dateBooking" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:id="@+id/btn_time"
+        android:layout_alignBottom="@+id/dateTimeOfBooking"
+        android:layout_toRightOf="@+id/dateTimeOfBooking"
+        android:layout_toEndOf="@+id/dateTimeOfBooking" />
+
+    <TextView
+        android:id="@+id/styleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:text="Style"
+        android:textColor="@color/white"
+        android:layout_below="@id/dateTimeOfBooking" />/>
+
+
+    <com.example.foodgalaxy.Common.MultiSelectionSpinner
+        android:id="@+id/style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_weight="2"
+        android:background="@color/white"
+        android:spinnerMode="dropdown"
+        android:layout_alignBottom="@+id/styleText"
+        android:layout_toRightOf="@+id/styleText"
+        android:layout_toEndOf="@+id/styleText"
+         />
+
+
+
+    <Button
+        android:id="@+id/btnSearchRest"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/btn_back"
+        android:text="Search >"
+        android:layout_below="@id/styleText"
+ />
+
+
+
+
+</RelativeLayout>

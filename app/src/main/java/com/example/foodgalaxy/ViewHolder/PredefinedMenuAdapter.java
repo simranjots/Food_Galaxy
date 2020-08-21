@@ -1,0 +1,82 @@
+package com.example.foodgalaxy.ViewHolder;
+
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.foodgalaxy.Model.Menu;
+import com.example.foodgalaxy.Model.Restaurant;
+import com.example.foodgalaxy.R;
+import com.example.foodgalaxy.RestaurantDetailPage;
+
+import java.util.ArrayList;
+
+public class PredefinedMenuAdapter extends  RecyclerView.Adapter<PredefinedMenuAdapter.ViewHolder>  {
+    private ArrayList<Menu> menus;
+    private Context mContext;
+
+    public PredefinedMenuAdapter(ArrayList<Menu> menus, Context mContext)
+    {
+        this.menus = menus;
+        this.mContext = mContext;
+    }
+
+    @NonNull
+    @Override
+    public PredefinedMenuAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem= layoutInflater.inflate(R.layout.predefinedmenus, parent, false);
+        PredefinedMenuAdapter.ViewHolder holder = new PredefinedMenuAdapter.ViewHolder(listItem);
+        return holder;
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PredefinedMenuAdapter.ViewHolder holder, final int position) {
+
+        holder.name.setText(menus.get(position).getName());
+        holder.price.setText((int) menus.get(position).getPrice());
+
+
+
+        holder.menuList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(), RestaurantDetailPage.class);
+                intent.putExtra("preDefinedmenuDetail",menus.get(position));
+                v.getContext().startActivity(intent);
+
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return menus.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
+        TextView name;
+        TextView price;
+        RelativeLayout menuList;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.PMenu_Name);
+            price = itemView.findViewById(R.id.PMenu_Price);
+            menuList = itemView.findViewById(R.id.predefinedmenuList);
+
+        }
+    }
+}
