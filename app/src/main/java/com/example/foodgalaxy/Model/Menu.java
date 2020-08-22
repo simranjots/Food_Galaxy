@@ -10,6 +10,15 @@ public class Menu implements Parcelable {
      private String description;
      private int R_Id;
      private boolean isPackage;
+     private String imageLink;
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
 
     protected Menu(Parcel in) {
         Id = in.readInt();
@@ -18,6 +27,7 @@ public class Menu implements Parcelable {
         description = in.readString();
         R_Id = in.readInt();
         isPackage = in.readByte() != 0;
+        imageLink = in.readString();
     }
 
     public static final Creator<Menu> CREATOR = new Creator<Menu>() {
@@ -80,13 +90,14 @@ public class Menu implements Parcelable {
         isPackage = aPackage;
     }
 
-    public Menu(int id, String name, double price, String description, int r_Id, boolean isPackage) {
-        Id = id;
+    public Menu(int id, String name, double price, String description, int r_Id, boolean isPackage, String imageLink) {
+        this.Id = id;
         this.name = name;
         this.price = price;
         this.description = description;
-        R_Id = r_Id;
+        this.R_Id = r_Id;
         this.isPackage = isPackage;
+        this.imageLink = imageLink;
     }
 
     @Override
@@ -102,5 +113,6 @@ public class Menu implements Parcelable {
         dest.writeString(description);
         dest.writeInt(R_Id);
         dest.writeByte((byte) (isPackage ? 1 : 0));
+        dest.writeString(imageLink);
     }
 }

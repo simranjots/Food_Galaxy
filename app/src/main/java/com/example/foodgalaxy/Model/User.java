@@ -1,6 +1,8 @@
 package com.example.foodgalaxy.Model;
 
 public class User {
+    private long Id;
+    private long Rest_id;
     private  String Name;
     private String Password;
     private String Phone;
@@ -10,12 +12,14 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password, String phone, String address) {
+    public User(long id ,String name, String password, String phone, String address) {
+        Id = id;
         Name = name;
         Password = password;
         Phone = phone;
         Address = address;
         IsStaff = "false";
+        Rest_id = 0 ;
     }
 
     public String getName() {

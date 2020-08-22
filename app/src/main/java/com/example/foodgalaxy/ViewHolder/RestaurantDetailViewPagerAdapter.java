@@ -12,7 +12,6 @@ public class RestaurantDetailViewPagerAdapter extends FragmentPagerAdapter {
 
     private ArrayList<Fragment> fragmentList = new ArrayList<>();
     private ArrayList<String> tilteList = new ArrayList<>();
-    int restaurant_Id = 0;
 
     public RestaurantDetailViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -35,15 +34,9 @@ public class RestaurantDetailViewPagerAdapter extends FragmentPagerAdapter {
         return tilteList.size();
     }
 
-    public void addFragments(Fragment fragment, String title, int restaurant_Id)
-    {
+    public void addFragments(Fragment fragment, String title) {
         fragmentList.add(fragment);
         tilteList.add(title);
-        this.restaurant_Id = restaurant_Id;
     }
 
-    public int getRestaurant_Id()
-    {
-        return restaurant_Id;
-    }
 }

@@ -27,6 +27,7 @@ public class Restaurant implements Parcelable {
     }
 
     protected Restaurant(Parcel in) {
+        Id  = in.readInt();
         name = in.readString();
         address = in.readString();
         cMinSize = in.readInt();
@@ -119,6 +120,7 @@ public class Restaurant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(Id);
         dest.writeString(name);
         dest.writeString(address);
         dest.writeInt(cMinSize);

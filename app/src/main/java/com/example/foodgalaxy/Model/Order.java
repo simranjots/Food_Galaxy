@@ -1,6 +1,7 @@
 package com.example.foodgalaxy.Model;
 
 public class Order {
+
     private String ProductId;
     private String ProductName;
     private String Quantity;

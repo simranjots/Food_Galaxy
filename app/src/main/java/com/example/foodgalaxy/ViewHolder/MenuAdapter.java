@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgalaxy.Model.Menu;
-import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.R;
 import com.example.foodgalaxy.RestaurantDetailPage;
+import com.example.foodgalaxy.menu.MenuDetail;
 
 import java.util.ArrayList;
 
@@ -43,8 +43,11 @@ public class MenuAdapter extends  RecyclerView.Adapter<MenuAdapter.ViewHolder>  
     @Override
     public void onBindViewHolder(@NonNull MenuAdapter.ViewHolder holder, final int position) {
 
+        double price = menus.get(position).getPrice();
+
         holder.name.setText(menus.get(position).getName());
-        holder.price.setText((int) menus.get(position).getPrice());
+
+        holder.price.setText(Double.toString(price) + "$");
 
 
 
@@ -52,7 +55,7 @@ public class MenuAdapter extends  RecyclerView.Adapter<MenuAdapter.ViewHolder>  
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(v.getContext(), RestaurantDetailPage.class);
+                Intent intent = new Intent(v.getContext(), MenuDetail.class);
                 intent.putExtra("menuDetail",menus.get(position));
                 v.getContext().startActivity(intent);
 

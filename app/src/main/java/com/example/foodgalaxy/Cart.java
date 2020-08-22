@@ -223,7 +223,7 @@ public class Cart extends AppCompatActivity {
      */
     private void loadListFood() {
         // get cart list
-        carts = new Database(this).getCarts();
+        //carts = new Database(this).getCarts();
         // set adapter
         adapter = new CartAdapter(carts, this);
         recyclerView.setAdapter(adapter);
