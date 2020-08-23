@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodgalaxy.Common.Common;
+import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -142,10 +143,14 @@ public class SignInActivity extends AppCompatActivity {
                             User user = dataSnapshot.child(inputPhone.getText().toString()).getValue(User.class);
                             user.setPhone(inputPhone.getText().toString());//set phone
                             if (user.getPassword().equals(inputPassword.getText().toString())) {
+                                Database db = new Database(getBaseContext());
+                                db.cleanCart();
 
                                 Intent homeIntent= new Intent(SignInActivity.this,PickupDeliveryActivity.class);
                                 Common.currentUser=user;
                                 startActivity(homeIntent);
+
+
                                 finish();
 
                             }

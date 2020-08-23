@@ -51,7 +51,7 @@ public class PreDefinedMenuFragment extends Fragment {
 
 
     public void addData(){
-        menuList.add(new Menu(1,"Meat Board", 12.9,"Chicken, Salami, Steak, Smoked beacon", 2, true,"https://cdn0.wideopeneats.com/wp-content/uploads/2018/03/different-types-of-meat-720x405.png"));
+        menuList.add(new Menu(3,"Meat Board", 12.9,"Chicken, Salami, Steak, Smoked beacon", 2, true,"https://cdn0.wideopeneats.com/wp-content/uploads/2018/03/different-types-of-meat-720x405.png"));
         menuList.add(new Menu(2,"Fries", 13.9,"Sweet Potato fries", 2, false,"https://img.apmcdn.org/4b2716626c9ff3f6e5dfebe520eb592c33cf1e7b/uncropped/941f50-splendid-table-french-fries.jpg"));
     }
 

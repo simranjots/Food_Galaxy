@@ -3,12 +3,16 @@ package com.example.foodgalaxy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.ViewHolder.RestaurantDetailViewPagerAdapter;
 import com.example.foodgalaxy.menu.MenuFragment;
@@ -19,6 +23,7 @@ public class RestaurantDetailPage extends AppCompatActivity {
 
     TabLayout tableLayout;
     ViewPager viewPager;
+
     SharedPreferences sharedpreferences;
     Restaurant restaurant;
     int r_Id = 0;
@@ -31,6 +36,7 @@ public class RestaurantDetailPage extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_detail_page);
 
         restaurantName = (TextView) findViewById(R.id.RestaurantName);
+
         restaurant = getIntent().getParcelableExtra("restaurantDetails");
         restaurantName.setText(restaurant.getName());
         r_Id = restaurant.getId();
@@ -53,6 +59,11 @@ public class RestaurantDetailPage extends AppCompatActivity {
 
         tableLayout = (TabLayout) findViewById(R.id.detailTabLayout);
         tableLayout.setupWithViewPager(viewPager);
+
+
+
     }
+
+
 
 }

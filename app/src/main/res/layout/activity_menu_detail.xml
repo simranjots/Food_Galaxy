@@ -51,4 +51,16 @@
         android:text="Add to Cart"
         android:layout_below="@id/m_description"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Cart"
+        android:id="@+id/viewCart"
+        android:visibility="invisible"
+        android:background="@drawable/btn_back"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        />
+
+
 </RelativeLayout>
