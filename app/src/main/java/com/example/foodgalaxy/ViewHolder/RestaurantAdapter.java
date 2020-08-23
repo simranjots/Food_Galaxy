@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.example.foodgalaxy.RestaurantDetailPage;
 import java.util.ArrayList;
 
 public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.ViewHolder>  {
+
     private ArrayList<Restaurant> restaurants;
     private Context mContext;
 
@@ -33,7 +35,7 @@ public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.V
     @Override
     public RestaurantAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.restaurants, parent, false);
+        View listItem= layoutInflater.inflate(R.layout.menu_item, parent, false);
         RestaurantAdapter.ViewHolder holder = new RestaurantAdapter.ViewHolder(listItem);
         return holder;
 
@@ -67,11 +69,11 @@ public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.V
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name;
-        RelativeLayout restaurantList;
+        LinearLayout restaurantList;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.R_Name);
-            restaurantList = itemView.findViewById(R.id.restaurantList);
+            name = itemView.findViewById(R.id.menu_name);
+            restaurantList = itemView.findViewById(R.id.click);
 
         }
     }

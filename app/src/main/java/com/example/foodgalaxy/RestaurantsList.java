@@ -13,6 +13,7 @@ import com.example.foodgalaxy.ViewHolder.RestaurantAdapter;
 import java.util.ArrayList;
 
 public class RestaurantsList extends AppCompatActivity {
+
     ArrayList<Restaurant> restaurantsList = new ArrayList<Restaurant>();
     boolean IsDelivery;
     int size;
