@@ -13,9 +13,10 @@ public class Restaurant implements Parcelable {
     private boolean IsDelivery;
     private String imageLink;
 
+    public Restaurant() {
+    }
 
-
-    public Restaurant(int Id,String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
+    public Restaurant(int Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
         this.Id = Id;
         this.name = name;
         this.address = address;
