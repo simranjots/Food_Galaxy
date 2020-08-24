@@ -71,7 +71,7 @@ public class SizeAndDateActivity extends AppCompatActivity implements AdapterVie
                 Intent i1 = new Intent(SizeAndDateActivity.this, RestaurantsList.class);
                 i1.putExtra("size", size.getText().toString());
                 i1.putExtra("style", style.getSelectedItems());
-                i1.putExtra("IsDelivery", IsDelivery);
+                i1.putExtra("isDelivery", IsDelivery);
                 i1.putExtra("dateTime",dateTime);
                 startActivity(i1);
             }
