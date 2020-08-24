@@ -4,36 +4,37 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Restaurant implements Parcelable {
-    private int Id;
+    private String id;
     private String name;
     private String address;
-    private int cMinSize;
-    private int cMaxSize;
-    private int FS_Id;
-    private boolean IsDelivery;
+    private int cMinsize;
+    private int cMaxsize;
+    private int Fs_id;
+    private String delivery;
     private String imageLink;
 
+    public Restaurant() {
+    }
 
-
-    public Restaurant(int Id,String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
-        this.Id = Id;
+    public Restaurant(String Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, String isDelivery, String imageLink) {
+        this.id = Id;
         this.name = name;
         this.address = address;
-        this.cMinSize = cMinSize;
-        this.cMaxSize = cMaxSize;
-        this.FS_Id = FS_Id;
-        IsDelivery = isDelivery;
+        this.cMinsize = cMinSize;
+        this.cMaxsize = cMaxSize;
+        this.Fs_id = FS_Id;
+        this.delivery = isDelivery;
         this.imageLink = imageLink;
     }
 
     protected Restaurant(Parcel in) {
-        Id  = in.readInt();
+        id = in.readString();
         name = in.readString();
         address = in.readString();
-        cMinSize = in.readInt();
-        cMaxSize = in.readInt();
-        FS_Id = in.readInt();
-        IsDelivery = in.readByte() != 0;
+        cMinsize = in.readInt();
+        cMaxsize = in.readInt();
+        Fs_id = in.readInt();
+        delivery = in.readString();
         imageLink = in.readString();
     }
 
@@ -49,12 +50,12 @@ public class Restaurant implements Parcelable {
         }
     };
 
-    public int getId() {
-        return Id;
+    public String getId() {
+        return id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(String id) {
+        this.id = id;
     }
     public String getName() {
         return name;
@@ -72,36 +73,36 @@ public class Restaurant implements Parcelable {
         this.address = address;
     }
 
-    public int getcMinSize() {
-        return cMinSize;
+    public int getcMinsize() {
+        return cMinsize;
     }
 
-    public void setcMinSize(int cMinSize) {
-        this.cMinSize = cMinSize;
+    public void setcMinsize(int cMinsize) {
+        this.cMinsize = cMinsize;
     }
 
-    public int getcMaxSize() {
-        return cMaxSize;
+    public int getcMaxsize() {
+        return cMaxsize;
     }
 
-    public void setcMaxSize(int cMaxSize) {
-        this.cMaxSize = cMaxSize;
+    public void setcMaxsize(int cMaxsize) {
+        this.cMaxsize = cMaxsize;
     }
 
-    public int getFS_Id() {
-        return FS_Id;
+    public int getFs_id() {
+        return Fs_id;
     }
 
-    public void setFS_Id(int FS_Id) {
-        this.FS_Id = FS_Id;
+    public void setFs_id(int fs_id) {
+        this.Fs_id = fs_id;
     }
 
-    public boolean isDelivery() {
-        return IsDelivery;
+    public String isDelivery() {
+        return delivery;
     }
 
-    public void setDelivery(boolean delivery) {
-        IsDelivery = delivery;
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
     }
 
     public String getImageLink() {
@@ -120,13 +121,13 @@ public class Restaurant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(Id);
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(address);
-        dest.writeInt(cMinSize);
-        dest.writeInt(cMaxSize);
-        dest.writeInt(FS_Id);
-        dest.writeByte((byte) (IsDelivery ? 1 : 0));
+        dest.writeInt(cMinsize);
+        dest.writeInt(cMaxsize);
+        dest.writeInt(Fs_id);
+        dest.writeString(delivery);
         dest.writeString(imageLink);
     }
 }

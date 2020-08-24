@@ -1,4 +1,4 @@
-package com.example.foodgalaxy;
+package com.example.foodgalaxy.LoginSignup;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,8 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodgalaxy.Common.Common;
-import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.User;
+import com.example.foodgalaxy.DataFilterActivities.PickupDeliveryActivity;
+import com.example.foodgalaxy.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -91,9 +92,6 @@ public class SignInActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_pass);
 
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
-
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,13 +141,9 @@ public class SignInActivity extends AppCompatActivity {
                             User user = dataSnapshot.child(inputPhone.getText().toString()).getValue(User.class);
                             user.setPhone(inputPhone.getText().toString());//set phone
                             if (user.getPassword().equals(inputPassword.getText().toString())) {
-                                Database db = new Database(getBaseContext());
-                                db.cleanCart();
-
                                 Intent homeIntent= new Intent(SignInActivity.this,PickupDeliveryActivity.class);
                                 Common.currentUser=user;
                                 startActivity(homeIntent);
-
 
                                 finish();
 

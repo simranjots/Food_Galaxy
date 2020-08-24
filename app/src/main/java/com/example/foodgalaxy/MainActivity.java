@@ -14,7 +14,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodgalaxy.Common.Common;
+import com.example.foodgalaxy.LoginSignup.SignInActivity;
 import com.example.foodgalaxy.Model.Category;
 import com.example.foodgalaxy.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_splashscreen"
     android:padding="16dp"
     tools:context=".Cart">
 
@@ -16,22 +15,26 @@
 
     <androidx.cardview.widget.CardView
         android:layout_alignParentBottom="true"
+        app:cardCornerRadius="18dp"
+        android:elevation="4dp"
         app:cardBackgroundColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="100dp">
-        
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_margin="8dp"
                 android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/linearLayout3">
-                
+
                 <TextView
                     android:text="Total:"
                     android:textSize="20sp"
@@ -48,26 +51,43 @@
                     android:layout_height="wrap_content" />
 
 
-                
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnPlaceOrder"
-                android:text="Place Order"
-                android:textColor="@android:color/white"
+            <androidx.cardview.widget.CardView
+                android:layout_alignParentBottom="true"
+                app:cardCornerRadius="18dp"
+                android:elevation="4dp"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_below="@+id/linearLayout3" />
+                android:layout_marginBottom="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearLayout3"
+                    android:background="@android:color/transparent">
+                    <Button
+                        android:id="@+id/btnPlaceOrder"
+                        android:text="Place Order"
+                        android:background="@android:color/black"
+                        android:textColor="@android:color/white"
+
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
 
         </RelativeLayout>
-        
-        
+
+
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

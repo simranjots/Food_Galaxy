@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Menu implements Parcelable {
-     private int Id;
+     private String Id;
      private String name;
      private double price;
      private String description;
@@ -12,16 +12,11 @@ public class Menu implements Parcelable {
      private boolean isPackage;
      private String imageLink;
 
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+    public Menu() {
     }
 
     protected Menu(Parcel in) {
-        Id = in.readInt();
+        Id = in.readString();
         name = in.readString();
         price = in.readDouble();
         description = in.readString();
@@ -42,11 +37,11 @@ public class Menu implements Parcelable {
         }
     };
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
 
@@ -90,7 +85,16 @@ public class Menu implements Parcelable {
         isPackage = aPackage;
     }
 
-    public Menu(int id, String name, double price, String description, int r_Id, boolean isPackage, String imageLink) {
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+
+    public Menu(String id, String name, double price, String description, int r_Id, boolean isPackage, String imageLink) {
         this.Id = id;
         this.name = name;
         this.price = price;
@@ -107,7 +111,7 @@ public class Menu implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(Id);
+        dest.writeString(Id);
         dest.writeString(name);
         dest.writeDouble(price);
         dest.writeString(description);

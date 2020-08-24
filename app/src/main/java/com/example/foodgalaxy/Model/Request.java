@@ -1,5 +1,7 @@
 package com.example.foodgalaxy.Model;
 
+import com.example.foodgalaxy.Cart;
+
 import java.util.List;
 
 public class Request {
@@ -9,12 +11,12 @@ public class Request {
     private String total;
     private String status;
     private String paymentState;
-    private List<Order> foods;
+    private List<CartItem> foods;
 
     public Request() {
     }
 
-    public Request(String phone, String name, String address, String total, String status, String paymentState, List<Order> foods) {
+    public Request(String phone, String name, String address, String total, String status, String paymentState, List<CartItem> foods) {
         this.phone = phone;
         this.name = name;
         this.address = address;
@@ -72,11 +74,11 @@ public class Request {
         this.total = total;
     }
 
-    public List<Order> getFoods() {
+    public List<CartItem> getFoods() {
         return foods;
     }
 
-    public void setFoods(List<Order> foods) {
+    public void setFoods(List<CartItem> foods) {
         this.foods = foods;
     }
 }
