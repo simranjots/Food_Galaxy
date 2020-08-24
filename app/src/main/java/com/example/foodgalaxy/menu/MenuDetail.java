@@ -1,5 +1,6 @@
 package com.example.foodgalaxy.menu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,8 +14,14 @@ import android.widget.Toast;
 import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.CartItem;
 import com.example.foodgalaxy.Model.Menu;
+import com.example.foodgalaxy.Model.User;
 import com.example.foodgalaxy.R;
 import com.example.foodgalaxy.ShowCart;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -24,8 +31,12 @@ public class MenuDetail extends AppCompatActivity {
     TextView name, price, description;
     Button addToCart;
     Button viewCart;
-    Menu m;
-    Menu pdm;
+    String m;
+    String pdm;
+    FirebaseDatabase database;
+    DatabaseReference menu;
+    String id;
+    Menu menuList;
 
 
     @Override
@@ -42,50 +53,84 @@ public class MenuDetail extends AppCompatActivity {
 
 
 
-        m = getIntent().getParcelableExtra("menuDetail");
-        pdm = getIntent().getParcelableExtra("preDefinedmenuDetail");
+        //Init Firebase
+        database= FirebaseDatabase.getInstance();
+        menu = database.getReference("Menu");
+
+        m = getIntent().getStringExtra("menuDetail");
+        pdm = getIntent().getStringExtra("preDefinedmenuDetail");
 
         if(m != null)
         {
+            menu.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                     menuList = snapshot.child(m).getValue(Menu.class);
+                    Picasso.with(MenuDetail.this).load(menuList.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(imageView);
+                    name.setText(menuList.getName());
+                    price.setText(Double.toString(menuList.getPrice()) + "$");
+                    description.setText(menuList.getDescription());
+                    id = menuList.getId();
+                    //Toast.makeText(MenuDetail.this, id, Toast.LENGTH_SHORT).show();
 
-            Picasso.with(MenuDetail.this).load(m.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(imageView);
+                }
 
-            name.setText(m.getName());
-            price.setText(Double.toString(m.getPrice()) + "$");
-            description.setText(m.getDescription());
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
         }
         if(pdm != null)
         {
-            Picasso.with(MenuDetail.this).load(m.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(imageView);
-            name.setText(m.getName());
-            price.setText(Double.toString(m.getPrice()) + "$");
-            description.setText(m.getDescription());
+            menu.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                     menuList = snapshot.child(m).getValue(Menu.class);
+                    Picasso.with(MenuDetail.this).load(menuList.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(imageView);
+                    name.setText(menuList.getName());
+                    price.setText(Double.toString(menuList.getPrice()) + "$");
+                    description.setText(menuList.getDescription());
+                    id = menuList.getId();
+                    Toast.makeText(MenuDetail.this, id, Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
         }
         enableViewCart(viewCart);
 
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MenuDetail.this, id, Toast.LENGTH_SHORT).show();
                 addDataToCart();
             }
         });
     }
+
     public void addDataToCart(){
 
         if(m != null)
         {
-
-            addItemToCart(m);
+            addItemToCart(Integer.parseInt(id));
             recreate();
         }
         if(pdm != null)
         {
-            addItemToCart(pdm);
+            //addItemToCart(pdm);
             recreate();
         }
     }
 
-    public void addItemToCart(Menu item){
+    public void addItemToCart(int item){
         Database db = new Database(getBaseContext());
         List<CartItem> listOfitems = db.getCarts();
         int quantity = 1;
@@ -93,7 +138,7 @@ public class MenuDetail extends AppCompatActivity {
 
         if(listOfitems.size() > 0) {
             for (CartItem i : listOfitems) {
-                if (Integer.parseInt(i.getMenuId()) == item.getId())
+                if (i.getMenuId() == Integer.toString(item))
                 {
                    quantity  = Integer.parseInt(i.getQuantity()) + 1;
                    i.setQuantity(Integer.toString(quantity));
@@ -107,8 +152,9 @@ public class MenuDetail extends AppCompatActivity {
             }
             if(flag)
             {
+
                 quantity = 1;
-                CartItem cartItem = new CartItem(Integer.toString(item.getId()),item.getName(),Double.toString(item.getPrice()),Integer.toString(quantity));
+                CartItem cartItem = new CartItem(menuList.getId(),menuList.getName(),Double.toString(menuList.getPrice()),Integer.toString(quantity));
                 listOfitems.add(cartItem);
                 Toast.makeText(getBaseContext(), "Cart Updated", Toast.LENGTH_SHORT).show();
             }
@@ -120,7 +166,7 @@ public class MenuDetail extends AppCompatActivity {
             }
         }
         else{
-            CartItem cartItem = new CartItem(Integer.toString(item.getId()),item.getName(),Double.toString(item.getPrice()),Integer.toString(quantity));
+            CartItem cartItem = new CartItem(menuList.getId(),menuList.getName(),Double.toString(menuList.getPrice()),Integer.toString(quantity));
             db.addToCart(cartItem);
             Toast.makeText(getBaseContext(), "Item Added", Toast.LENGTH_SHORT).show();
         }

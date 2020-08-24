@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Restaurant implements Parcelable {
-    private int Id;
+    private String Id;
     private String name;
     private String address;
     private int cMinSize;
@@ -16,7 +16,7 @@ public class Restaurant implements Parcelable {
     public Restaurant() {
     }
 
-    public Restaurant(int Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
+    public Restaurant(String Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
         this.Id = Id;
         this.name = name;
         this.address = address;
@@ -28,7 +28,7 @@ public class Restaurant implements Parcelable {
     }
 
     protected Restaurant(Parcel in) {
-        Id  = in.readInt();
+        Id  = in.readString();
         name = in.readString();
         address = in.readString();
         cMinSize = in.readInt();
@@ -50,11 +50,11 @@ public class Restaurant implements Parcelable {
         }
     };
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         Id = id;
     }
     public String getName() {
@@ -121,7 +121,7 @@ public class Restaurant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(Id);
+        dest.writeString(Id);
         dest.writeString(name);
         dest.writeString(address);
         dest.writeInt(cMinSize);

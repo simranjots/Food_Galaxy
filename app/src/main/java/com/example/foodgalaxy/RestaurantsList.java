@@ -37,15 +37,13 @@ public class RestaurantsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants_list);
-        addData();
-
 
         //Init Firebase
         database= FirebaseDatabase.getInstance();
         restaurant = database.getReference("Restaurant");
         restaurantsList = filterdata(restaurantsList);
 
-       recyclerView = findViewById(R.id.restaurantRecycler);
+        recyclerView = findViewById(R.id.restaurantRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         loadMenu();
@@ -85,8 +83,8 @@ public class RestaurantsList extends AppCompatActivity {
     }
 
     public void addData(){
-        restaurantsList.add(new Restaurant(1,"Fisrt restaurant", "60 Castlegrove",20, 50, 1, true,"forexample.com"));
-        restaurantsList.add(new Restaurant(2,"Second restaurant", "60 Castlegrove",10, 50, 1, false,"forexample.com"));
+        restaurantsList.add(new Restaurant("1","Fisrt restaurant", "60 Castlegrove",20, 50, 1, true,"forexample.com"));
+        restaurantsList.add(new Restaurant("2","Second restaurant", "60 Castlegrove",10, 50, 1, false,"forexample.com"));
     }
 
     public ArrayList<Restaurant> filterdata(ArrayList<Restaurant> restaurantsList){
