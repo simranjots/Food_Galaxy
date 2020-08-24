@@ -1,4 +1,4 @@
-package com.example.foodgalaxy;
+package com.example.foodgalaxy.DataFilterActivities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -8,19 +8,16 @@ import android.os.Bundle;
 
 import com.example.foodgalaxy.Common.MultiSelectionSpinner;
 import com.example.foodgalaxy.Model.FoodStyle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.foodgalaxy.R;
+import com.example.foodgalaxy.Restaurant.RestaurantsList;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 

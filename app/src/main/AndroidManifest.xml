@@ -14,27 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrderPlaced"></activity>
-        <activity android:name=".ShowCart" />
-        <activity android:name=".FoodDetail" />
-        <activity android:name=".RestaurantDetailPage" />
-        <activity android:name=".RestaurantsList" />
+        <activity android:name=".Order.OrderPlaced"></activity>
+        <activity android:name=".menu.FoodDetail" />
+        <activity android:name=".Restaurant.RestaurantDetailPage" />
+        <activity android:name=".Restaurant.RestaurantsList" />
         <activity
-            android:name=".SizeAndDateActivity"
+            android:name=".DataFilterActivities.SizeAndDateActivity"
             android:label="@string/title_activity_size_and_date"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".LoginSignup.ResetPasswordActivity" />
+        <activity android:name=".LoginSignup.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PickupDeliveryActivity" />
+        <activity android:name=".DataFilterActivities.PickupDeliveryActivity" />
         <activity android:name=".Cart" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginSignup.SignUpActivity" />
         <activity android:name=".DeliveryAddressDetails" />
         <activity android:name=".MainActivity" />
     </application>

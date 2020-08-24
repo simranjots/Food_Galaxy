@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,20 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodgalaxy.FoodDetail;
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.Menu;
-import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.R;
-import com.example.foodgalaxy.ResetPasswordActivity;
-import com.example.foodgalaxy.RestaurantDetailPage;
-import com.example.foodgalaxy.RestaurantsList;
 import com.example.foodgalaxy.ViewHolder.MenuAdapter;
-import com.example.foodgalaxy.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

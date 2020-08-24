@@ -1,4 +1,4 @@
-package com.example.foodgalaxy;
+package com.example.foodgalaxy.Common;
 
 
 
@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodgalaxy.R;
 import com.example.foodgalaxy.ViewHolder.CartAdapter;
 
 

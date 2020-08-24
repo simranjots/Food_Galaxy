@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodgalaxy.Model.Address;
+import com.example.foodgalaxy.DataFilterActivities.SizeAndDateActivity;
 
 public class DeliveryAddressDetails extends AppCompatActivity {
 

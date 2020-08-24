@@ -1,4 +1,4 @@
-package com.example.foodgalaxy;
+package com.example.foodgalaxy.Restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,8 +12,9 @@ import android.widget.Toast;
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.FoodStyle;
 import com.example.foodgalaxy.Model.Restaurant;
+import com.example.foodgalaxy.R;
+import com.example.foodgalaxy.LoginSignup.ResetPasswordActivity;
 import com.example.foodgalaxy.ViewHolder.MenuViewHolder;
-import com.example.foodgalaxy.ViewHolder.RestaurantAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

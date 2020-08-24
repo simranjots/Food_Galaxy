@@ -1,4 +1,4 @@
-package com.example.foodgalaxy;
+package com.example.foodgalaxy.menu;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,10 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.foodgalaxy.Cart;
 import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.CartItem;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.Model.Rating;
+import com.example.foodgalaxy.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -130,7 +132,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                         Snackbar snackbar = Snackbar.make(view,"Added To Cart", Snackbar.LENGTH_SHORT).setAction("Go to Cart", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent cartIntent = new Intent(FoodDetail.this,Cart.class);
+                                Intent cartIntent = new Intent(FoodDetail.this, Cart.class);
                                 startActivity(cartIntent);
                             }
                         });

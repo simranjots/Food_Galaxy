@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgalaxy.Common.Common;
 import com.example.foodgalaxy.Common.Config;
+import com.example.foodgalaxy.Common.SwipeToDeleteCallback;
 import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.CartItem;
 import com.example.foodgalaxy.Model.Request;
@@ -35,9 +36,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -80,7 +79,7 @@ public class Cart extends AppCompatActivity {
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
 
             .clientId(Config.Paypal_Client_ID).rememberUser(true);
-    String address,comment;
+    String address;
 
 
     RecyclerView.LayoutManager layoutManager;
@@ -186,7 +185,7 @@ public class Cart extends AppCompatActivity {
 
                 PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(formatAmount),
                         "CAD",
-                        "Serwe Order",
+                        "Food Galaxy",
                         PayPalPayment.PAYMENT_INTENT_SALE);
                 Intent intent = new Intent (getApplicationContext() , PaymentActivity.class);
                 intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
@@ -230,7 +229,6 @@ public class Cart extends AppCompatActivity {
                                 carts
                         );
 
-                        //Request request1 = new Request(Common.currentUser.getPhone(),Common.currentUser.getName(),address,txtTotalPrice.getText().toString(),"0",);
 
                         // Submit to Firebase
                         // Using System.CurrentMillis to key
@@ -238,24 +236,25 @@ public class Cart extends AppCompatActivity {
                                 .setValue(request);
                         // Deleting cart
                         new Database(getBaseContext()).cleanCart();
-                        //Toast.makeText(Cart.this, " Thank you, Order Place", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Cart.this, " Thank you, Order Place", Toast.LENGTH_SHORT).show();
 
                         finish();
-                        new android.app.AlertDialog.Builder(Cart.this)
-                                .setTitle("Order Placed")
-                                .setMessage("Thankyou, your order has been placed")
 
-                                // Specifying a listener allows you to take an action before dismissing the dialog.
-                                // The dialog is automatically dismissed when a dialog button is clicked.
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                })
-
-                                // A null listener allows the button to dismiss the dialog and take no further action.
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+//                        new android.app.AlertDialog.Builder(Cart.this)
+//                                .setTitle("Order Placed")
+//                                .setMessage("Thankyou, your order has been placed")
+//
+//                                // Specifying a listener allows you to take an action before dismissing the dialog.
+//                                // The dialog is automatically dismissed when a dialog button is clicked.
+//                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        dialog.dismiss();
+//                                    }
+//                                })
+//
+//                                // A null listener allows the button to dismiss the dialog and take no further action.
+//                                .setIcon(android.R.drawable.ic_dialog_alert)
+//                                .show();
 
 
                     } catch (JSONException e) {
@@ -284,7 +283,10 @@ public class Cart extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
     //function to get current lat and long
 
     private void getUserLocation()

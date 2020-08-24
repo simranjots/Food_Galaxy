@@ -7,16 +7,18 @@ public class Orders {
     private int Id;
     private int R_Id;
     private int U_Id;
-    private double End_price;
-    private int discount;
-    private Date dateOrdered;
+    private double totalPrice;
+    private String status;
+    private String deliveryAddress;
+    private String dateOrdered;
 
-    public Orders(int id, int r_Id, int u_Id, double end_price, int discount, Date dateOrdered) {
+    public Orders(int id, int r_Id, int u_Id, double end_price, String status, String deliveryAddress,  String dateOrdered) {
         Id = id;
         R_Id = r_Id;
         U_Id = u_Id;
-        End_price = end_price;
-        this.discount = discount;
+        totalPrice = end_price;
+        this.status = status;
+        this.deliveryAddress = deliveryAddress;
         this.dateOrdered = dateOrdered;
     }
 
@@ -40,31 +42,39 @@ public class Orders {
         return U_Id;
     }
 
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
     public void setU_Id(int u_Id) {
         U_Id = u_Id;
     }
 
-    public double getEnd_price() {
-        return End_price;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setEnd_price(double end_price) {
-        End_price = end_price;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public int getDiscount() {
-        return discount;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public Date getDateOrdered() {
+    public String getDateOrdered() {
         return dateOrdered;
     }
 
-    public void setDateOrdered(Date dateOrdered) {
+    public void setDateOrdered(String dateOrdered) {
         this.dateOrdered = dateOrdered;
     }
 }

@@ -13,11 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodgalaxy.FoodDetail;
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.R;
-import com.example.foodgalaxy.RestaurantDetailPage;
 import com.example.foodgalaxy.ViewHolder.MenuAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
