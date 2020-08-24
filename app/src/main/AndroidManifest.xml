@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".OrderPlaced"></activity>
         <activity android:name=".ShowCart" />
-        <activity android:name=".menu.MenuDetail" />
+        <activity android:name=".FoodDetail" />
         <activity android:name=".RestaurantDetailPage" />
         <activity android:name=".RestaurantsList" />
         <activity

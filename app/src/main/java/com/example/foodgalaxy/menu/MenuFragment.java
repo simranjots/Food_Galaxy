@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodgalaxy.FoodDetail;
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.Model.Restaurant;
@@ -79,18 +80,18 @@ public class MenuFragment extends Fragment {
             protected void populateViewHolder(MenuAdapter viewHolder, Menu model, int position) {
 
                 ArrayList<Menu> menus = new ArrayList<Menu>();
-                double price = 12.9;
+
 
 
                 viewHolder.name.setText(model.getName());
 
-                viewHolder.price.setText(Double.toString(price) + "$");
+                viewHolder.price.setText(Double.toString(model.getPrice()) + "$");
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Get categoryId and send to new activity
-                        Intent RestaurantList = new Intent(getContext(),MenuDetail.class);
+                        Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
                         RestaurantList.putExtra("menuDetail",adapter.getRef(position).getKey());
                         startActivity(RestaurantList);
                         Toast.makeText(getContext(), model.getId(), Toast.LENGTH_SHORT).show();
@@ -101,10 +102,10 @@ public class MenuFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    public void addData(){
-        menuList.add(new Menu("1","Chicken", 12.9,"Best chicken tikka with seasoning", 2, false,"https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&url=https%3A%2F%2Fcdn-image.foodandwine.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Findiana-style-fried-chicken-ft-recipe0620.jpg%3Fitok%3DiK4ZWHUz"));
-        menuList.add(new Menu("2","Fries", 13.9,"Sweet Potato fries", 2, false, "https://img.apmcdn.org/4b2716626c9ff3f6e5dfebe520eb592c33cf1e7b/uncropped/941f50-splendid-table-french-fries.jpg"));
-    }
+//    public void addData(){
+//        menuList.add(new Menu("1","Chicken", "12.9","Best chicken tikka with seasoning", 2, false,"https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&url=https%3A%2F%2Fcdn-image.foodandwine.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Findiana-style-fried-chicken-ft-recipe0620.jpg%3Fitok%3DiK4ZWHUz"));
+//        menuList.add(new Menu("2","Fries", "13.9","Sweet Potato fries", 2, false, "https://img.apmcdn.org/4b2716626c9ff3f6e5dfebe520eb592c33cf1e7b/uncropped/941f50-splendid-table-french-fries.jpg"));
+//    }
 
     public ArrayList<Menu> filterdata(ArrayList<Menu> menuList){
 

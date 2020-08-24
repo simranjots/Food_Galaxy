@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Interface.ItemClickListener;
+import com.example.foodgalaxy.Model.CartItem;
 import com.example.foodgalaxy.Model.Order;
 import com.example.foodgalaxy.R;
 
@@ -24,8 +26,9 @@ import java.util.Locale;
 
 class CartviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    public TextView txt_cart_name,txt_price;
+    public TextView txt_cart_name,txt_price, txt_cart_spicy, txt_cart_comment;
     public ImageView img_cart_count;
+
 
     private ItemClickListener itemClickListener;
 
@@ -38,6 +41,8 @@ class CartviewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         txt_cart_name = (TextView)itemView.findViewById(R.id.cart_item_name);
         txt_price = (TextView)itemView.findViewById(R.id.cart_item_price);
         img_cart_count = (ImageView)itemView.findViewById(R.id.cart_item_count);
+        txt_cart_spicy = itemView.findViewById(R.id.cart_item_spicelevel);
+        txt_cart_comment = itemView.findViewById(R.id.cart_item_comment);
     }
 
     @Override
@@ -49,10 +54,10 @@ class CartviewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 public class CartAdapter extends RecyclerView.Adapter<CartviewHolder>{
 
 
-    private List<Order> listData = new ArrayList<>();
+    private List<CartItem> listData = new ArrayList<>();
     private Context context;
 
-    public CartAdapter(List<Order> listData, Context context) {
+    public CartAdapter(List<CartItem> listData, Context context) {
         this.listData = listData;
         this.context = context;
     }
@@ -69,7 +74,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartviewHolder>{
 
         String quantity = listData.get(position).getQuantity();
         String price = listData.get(position).getPrice();
-        String name = listData.get(position).getProductName();
+        String name = listData.get(position).getName();
         TextDrawable drawable =  TextDrawable.builder().buildRound(""+quantity, Color.RED);
         holder.img_cart_count.setImageDrawable(drawable);
 
@@ -78,7 +83,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartviewHolder>{
         //int totalPrice = (Integer.parseInt(price)) * (Integer.parseInt(quantity));
         //holder.txt_price.setText(fmt.format(totalPrice));
 
-        holder.txt_cart_name.setText(name);
+        holder.txt_cart_name.setText("Food Name: " + name);
+        holder.txt_cart_spicy.setText("Spicy Level: " + listData.get(position).getSpicy());
+        holder.txt_cart_comment.setText("Comment: " + listData.get(position).getComment());
+        holder.txt_price.setText("Food Price: " + price + " $");
+
 
 
     }
@@ -87,4 +96,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartviewHolder>{
     public int getItemCount() {
         return listData.size();
     }
+    public Context getContext() {
+        return context;
+    }
+
+    public void deleteItem(int position)
+    {
+
+
+        new Database(getContext()).deleteCart(listData.get(position).getMenuId());
+        listData.remove(position);
+        notifyItemRemoved(position);
+
+    }
+
 }

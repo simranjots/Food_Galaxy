@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodgalaxy.FoodDetail;
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.R;
@@ -79,13 +80,13 @@ public class PreDefinedMenuFragment extends Fragment {
 
                 viewHolder.name.setText(model.getName());
 
-                viewHolder.price.setText(Double.toString(price) + "$");
+                viewHolder.price.setText(model.getPrice() + "$");
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Get categoryId and send to new activity
-                        Intent RestaurantList = new Intent(getContext(),MenuDetail.class);
+                        Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
                         RestaurantList.putExtra("menuDetail",adapter.getRef(position).getKey());
                         startActivity(RestaurantList);
                     }
@@ -96,10 +97,10 @@ public class PreDefinedMenuFragment extends Fragment {
     }
 
 
-    public void addData(){
-        menuList.add(new Menu("3","Meat Board", 12.9,"Chicken, Salami, Steak, Smoked beacon", 2, true,"https://cdn0.wideopeneats.com/wp-content/uploads/2018/03/different-types-of-meat-720x405.png"));
-        menuList.add(new Menu("2","Fries", 13.9,"Sweet Potato fries", 2, false,"https://img.apmcdn.org/4b2716626c9ff3f6e5dfebe520eb592c33cf1e7b/uncropped/941f50-splendid-table-french-fries.jpg"));
-    }
+//    public void addData(){
+//        menuList.add(new Menu("3","Meat Board", 12.9,"Chicken, Salami, Steak, Smoked beacon", 2, true,"https://cdn0.wideopeneats.com/wp-content/uploads/2018/03/different-types-of-meat-720x405.png"));
+//        menuList.add(new Menu("2","Fries", 13.9,"Sweet Potato fries", 2, false,"https://img.apmcdn.org/4b2716626c9ff3f6e5dfebe520eb592c33cf1e7b/uncropped/941f50-splendid-table-french-fries.jpg"));
+//    }
 
     public ArrayList<Menu> filterdata(ArrayList<Menu> menuList){
 

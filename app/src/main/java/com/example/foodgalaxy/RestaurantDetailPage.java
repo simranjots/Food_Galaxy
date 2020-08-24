@@ -36,6 +36,7 @@ public class RestaurantDetailPage extends AppCompatActivity {
     String restaurant;
     Restaurant rest;
     int r_Id = 0;
+    Database databases;
     FirebaseDatabase database;
     DatabaseReference foodList;
     long id ;

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodgalaxy.Model.CartItem;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.R;
-import com.example.foodgalaxy.menu.MenuDetail;
 
 import java.util.ArrayList;
 import java.util.List;

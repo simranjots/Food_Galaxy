@@ -13,11 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodgalaxy.FoodDetail;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.R;
-import com.example.foodgalaxy.RestaurantDetailPage;
-import com.example.foodgalaxy.menu.MenuDetail;
+
 
 import java.util.ArrayList;
 
@@ -54,7 +54,7 @@ public class PredefinedMenuAdapter extends  RecyclerView.Adapter<PredefinedMenuA
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(v.getContext(), MenuDetail.class);
+                Intent intent = new Intent(v.getContext(), FoodDetail.class);
                 intent.putExtra("preDefinedmenuDetail",menus.get(position));
                 v.getContext().startActivity(intent);
 

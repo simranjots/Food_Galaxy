@@ -18,10 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.Menu;
 import com.example.foodgalaxy.R;
-import com.example.foodgalaxy.RestaurantDetailPage;
-import com.example.foodgalaxy.menu.MenuDetail;
 
-import java.util.ArrayList;
 
 public class MenuAdapter extends  RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView name;

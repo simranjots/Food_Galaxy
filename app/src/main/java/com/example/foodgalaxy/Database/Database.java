@@ -15,7 +15,7 @@ import java.util.List;
 
 
 public class Database extends SQLiteAssetHelper {
-    private static final String DB_NAME="SerweDB.db";
+    private static final String DB_NAME="FoodGalaxy.db";
     private static final int DB_VER=1;
     public Database(Context context){
         super(context,DB_NAME,null,DB_VER);
@@ -28,7 +28,7 @@ public class Database extends SQLiteAssetHelper {
         createTable(db);
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect={"MenuId","name","price","quantity"};
+        String[] sqlSelect={"MenuId","name","price","quantity","spicy","comment"};
         String sqlTable="CartItems";
 
         qb.setTables(sqlTable);
@@ -41,7 +41,9 @@ public class Database extends SQLiteAssetHelper {
                 result.add(new CartItem(c.getString(c.getColumnIndex("MenuId")),
                         c.getString(c.getColumnIndex("name")),
                         c.getString(c.getColumnIndex("price")),
-                        c.getString(c.getColumnIndex("quantity"))
+                        c.getString(c.getColumnIndex("quantity")),
+                        c.getString(c.getColumnIndex("spicy")),
+                        c.getString(c.getColumnIndex("comment"))
                 ));
             }while (c.moveToNext());
         }
@@ -52,11 +54,13 @@ public class Database extends SQLiteAssetHelper {
     {
         SQLiteDatabase db = getReadableDatabase();
         createTable(db);
-        String query = String.format("INSERT INTO CartItems(MenuId,name,price,quantity) VALUES('%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO CartItems(MenuId,name,price,quantity,spicy,comment) VALUES('%s','%s','%s','%s','%s','%s');",
                 cartItem.getMenuId(),
                 cartItem.getName(),
                 cartItem.getPrice(),
-                cartItem.getQuantity());
+                cartItem.getQuantity(),
+                cartItem.getSpicy(),
+                cartItem.getComment());
         db.execSQL(query);
 
     }
@@ -69,6 +73,13 @@ public class Database extends SQLiteAssetHelper {
         db.execSQL(query);
 
     }
+    public void deleteCart(String position)
+    {
+
+        String where = "MenuId=?";
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("CartItems",where,new String[]{position});
+    }
 
 public void createTable(SQLiteDatabase db){
     db.execSQL("create table if not exists " + "CartItems" + " (" +
@@ -76,7 +87,9 @@ public void createTable(SQLiteDatabase db){
             "MenuId" + " Text , " +
             "name" + " TEXT , " +
             "price" + " TEXT , " +
-            "quantity" + " TEXT );"
+            "quantity" + " TEXT," +
+            "spicy" + " TEXT , " +
+            "comment" +"TEXT );"
     );
 }
 

@@ -1,10 +1,15 @@
 package com.example.foodgalaxy;
 
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
-
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,16 +19,25 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.example.foodgalaxy.Common.Common;
 import com.example.foodgalaxy.Common.Config;
 import com.example.foodgalaxy.Database.Database;
-import com.example.foodgalaxy.Model.Order;
+import com.example.foodgalaxy.Model.CartItem;
 import com.example.foodgalaxy.Model.Request;
 import com.example.foodgalaxy.ViewHolder.CartAdapter;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -32,10 +46,10 @@ import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -53,6 +67,13 @@ public class Cart extends AppCompatActivity {
     @BindView(R.id.btnPlaceOrder)
     Button btnPlace;
 
+    double latitude, longitude;
+
+    private final int REQUEST_CODE = 1;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    LocationCallback locationCallback;
+    LocationRequest locationRequest;
+
     //paypal payment
     static PayPalConfiguration config = new PayPalConfiguration()
 
@@ -68,7 +89,7 @@ public class Cart extends AppCompatActivity {
     DatabaseReference requests = null;
 
     // init cart list and cart adapter
-    List<Order> carts = new ArrayList<>();
+    List<CartItem> carts = new ArrayList<>();
     CartAdapter adapter = null;
 
     @Override
@@ -76,6 +97,19 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
+
+        getUserLocation();
+
+        if(!checkPermission())
+        {
+            requestPermission();
+        }
+        else
+        {
+            fusedLocationProviderClient.requestLocationUpdates( locationRequest, locationCallback, Looper.myLooper() );
+        }
+
+
 
         //Init Paypal
         Intent intent = new Intent(this, PayPalService.class);
@@ -126,14 +160,16 @@ public class Cart extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
         // adding editText to layout params
+
         edtAddress.setLayoutParams(lp);
 
+        edtAddress.setText(getAddress(new LatLng(latitude,longitude)));
         // adding editText to alert dialog
         alertDialog.setView(edtAddress);
         alertDialog.setIcon(R.drawable.ic_shopping_cart_black_24dp);
 
         // set positive button
-       alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -147,8 +183,9 @@ public class Cart extends AppCompatActivity {
                 String formatAmount = txtTotalPrice.getText().toString()
                         .replace("$","")
                         .replace(",","");
+
                 PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(formatAmount),
-                        "USD",
+                        "CAD",
                         "Serwe Order",
                         PayPalPayment.PAYMENT_INTENT_SALE);
                 Intent intent = new Intent (getApplicationContext() , PaymentActivity.class);
@@ -201,8 +238,24 @@ public class Cart extends AppCompatActivity {
                                 .setValue(request);
                         // Deleting cart
                         new Database(getBaseContext()).cleanCart();
-                        Toast.makeText(Cart.this, " Thank you, Order Place", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Cart.this, " Thank you, Order Place", Toast.LENGTH_SHORT).show();
+
                         finish();
+                        new android.app.AlertDialog.Builder(Cart.this)
+                                .setTitle("Order Placed")
+                                .setMessage("Thankyou, your order has been placed")
+
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
 
 
                     } catch (JSONException e) {
@@ -216,25 +269,137 @@ public class Cart extends AppCompatActivity {
             }
 
         }
-   }
+    }
+
+
+    private Boolean checkPermission()
+    {
+        int permissionState = ActivityCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION );
+        return permissionState == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission()
+    {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE );
+
+    }
+
+
+    //function to get current lat and long
+
+    private void getUserLocation()
+    {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient( this);
+        locationRequest = new LocationRequest();
+        locationRequest.setPriority( LocationRequest.PRIORITY_HIGH_ACCURACY );
+        locationRequest.setInterval( 5000 );
+        locationRequest.setFastestInterval( 3000 );
+        locationRequest.setSmallestDisplacement( 10 );
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                for (Location location : locationResult.getLocations())
+                {
+                    //new
+                    LatLng userLocation = new LatLng( location.getLatitude(), location.getLongitude());
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+
+
+
+
+                    // .icon( BitmapDescriptorFactory.fromResource( R.drawable.icon ) ));
+
+
+                }
+            }
+        };        //setFavouriteMarkers();
+
+
+    }
 
     /**
      * Loading food list
      */
     private void loadListFood() {
         // get cart list
-        //carts = new Database(this).getCarts();
+        carts = new Database(this).getCarts();
         // set adapter
         adapter = new CartAdapter(carts, this);
         recyclerView.setAdapter(adapter);
 
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new SwipeToDeleteCallback(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         // Calculate total price
-        int total = 0;
-        for(Order order : carts) {
-            total += (Integer.parseInt(order.getPrice())) * (Integer.parseInt(order.getQuantity()));
+        double total = 0;
+        for(CartItem item : carts) {
+            double price = Double.parseDouble(item.getPrice()) * Integer.parseInt(item.getQuantity());
+            total = total + price;
         }
         Locale locale = new Locale("en", "US");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         txtTotalPrice.setText(fmt.format(total));
+    }
+
+    private String getAddress(LatLng latLng)
+    {
+        String address = "";
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try
+        {
+            List<Address> addresses = geocoder.getFromLocation( latLng.latitude, latLng.longitude, 1 );
+            if (addresses != null && addresses.size() > 0)
+            {
+                //Log.i(TAG, "on Location Result:" + addresses.get(0));
+                if (addresses.get(0).getSubThoroughfare() != null)
+                {
+                    address += addresses.get(0).getSubThoroughfare() + ", ";
+
+                }
+
+                if (addresses.get(0).getThoroughfare() != null)
+                {
+                    address += addresses.get(0).getThoroughfare();
+
+                }
+
+
+                if (addresses.get(0).getLocality() != null)
+                {
+                    address += " " + addresses.get(0).getLocality();
+
+                }
+
+                if (addresses.get(0).getAdminArea() != null)
+                {
+                    address += " " + addresses.get(0).getAdminArea();
+                }
+
+//                if (addresses.get(0).getCountryName() != null)
+//                {
+//                    address +=  " " + addresses.get(0).getCountryName();
+//
+//                }
+//                if (addresses.get(0).getPostalCode() != null)
+//                {
+//                    address += " " + addresses.get(0).getPostalCode();
+//
+//                }
+
+                //  Toast.makeText(this, address, Toast.LENGTH_SHORT).show();
+
+
+            }
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return address;
+
     }
 }
