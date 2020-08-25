@@ -3,8 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/menuList"
+    android:background="@drawable/menubg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/gray"
+        app:cardElevation="@dimen/cardview_default_radius">
 
         <TextView
             android:id="@+id/Menu_Name"
@@ -12,37 +20,23 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:text="Name" />
-
-    <TextView
-        android:id="@+id/Menu_Price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@id/Menu_Name"
-        android:text="Price" />
+            android:text=" Name"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/quantity"
+            android:id="@+id/Menu_Price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Quantity"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_alignRight="@+id/Menu_Name"/>
-
-        <TextView
-            android:id="@+id/quantityNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
+            android:layout_height="33dp"
+            android:layout_below="@id/Menu_Name"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/quantity"/>
+            android:text=" Price"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

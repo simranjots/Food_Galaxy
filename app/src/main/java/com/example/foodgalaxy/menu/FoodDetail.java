@@ -236,7 +236,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             menu.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    currentFood= snapshot.child(m).getValue(Menu.class);
+                    currentFood= snapshot.child(pdm).getValue(Menu.class);
 
                     Picasso.with(FoodDetail.this).load(currentFood.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(food_image);
                     collapsingToolbarLayout.setTitle(currentFood.getName());

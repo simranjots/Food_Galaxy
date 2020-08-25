@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/predefinedmenuList"
+    android:background="@drawable/menu_back"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -13,7 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:text="Name" />
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/PMenu_Price"
@@ -23,6 +26,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@id/PMenu_Name"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:text="Price" />
 
     <TextView
@@ -33,6 +38,8 @@
         android:text="Quantity"
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         android:layout_alignRight="@+id/PMenu_Name"/>
 
     <TextView
@@ -43,6 +50,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:layout_alignParentRight="true"
         android:layout_below="@id/pquantity"/>
 

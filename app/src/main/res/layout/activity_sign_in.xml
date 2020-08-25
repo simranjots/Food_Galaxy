@@ -24,40 +24,37 @@
             android:layout_marginBottom="30dp"
             android:src="@drawable/logo" />
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintTextColor="#FBFAFA">
+            android:layout_height="42dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_back"
+            android:hint="Enter your phone number"
+            android:inputType="phone"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:textColor="@android:color/black"
+            android:textColorHighlight="#FDFDFD"
+            android:textColorHint="@color/gray"
+            android:textColorLink="#FFFFFF" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Phone"
-                android:inputType="phone"
-                android:textColor="@android:color/white"
-                android:textColorHighlight="#FDFDFD"
-                android:textColorHint="@android:color/white"
-                android:textColorLink="#FFFFFF" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:hintTextColor="#FBF9F9">
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edittext_back"
+            android:hint="Enter your password"
+            android:paddingRight="7dp"
+            android:paddingLeft="7dp"
+            android:inputType="textPassword"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/gray"
+            android:textColorLink="#FDFCFC" />
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:textColorLink="#FDFCFC" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Login Button -->
 

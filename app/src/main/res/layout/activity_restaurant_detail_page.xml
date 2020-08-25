@@ -4,19 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightgray"
     tools:context=".Restaurant.RestaurantDetailPage">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:id="@+id/detailCardView"
         app:cardCornerRadius="10dp"
         android:layout_margin="10dp"
         app:cardElevation="@dimen/cardview_default_radius">
+
         <TextView
             android:id="@+id/RestaurantName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="46dp"
+            android:layout_height="36dp"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
@@ -31,6 +36,7 @@
         android:id="@+id/detailTabLayout"
         android:layout_below="@id/detailCardView"
         android:background="@color/colorPrimary"
+        app:tabTextColor="@color/white"
         app:tabMode="fixed"
         app:tabGravity="fill"/>
     <androidx.viewpager.widget.ViewPager
