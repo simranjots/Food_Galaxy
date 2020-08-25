@@ -64,13 +64,6 @@ public class PreDefinedMenuFragment extends Fragment {
                         Menu m = data.getValue(Menu.class);
                         menuList.add(m);
                     }
-                    Toast.makeText(getActivity(), "size:" + menuList.size(),
-                            Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity(), "1: " + menuList.get(0).isPredefinedMenu(),
-                            Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity(), "2: " + menuList.get(1).isPredefinedMenu(),
-                            Toast.LENGTH_LONG).show();
-
                     menuList = filterdata(menuList);
                     recyclerView = view.findViewById(R.id.predefinedMenuRecycler);
                     PredefinedMenuAdapter rcdp = new PredefinedMenuAdapter(menuList, getActivity());
