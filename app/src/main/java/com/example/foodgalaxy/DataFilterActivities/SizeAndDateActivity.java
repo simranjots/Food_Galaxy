@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.foodgalaxy.Common.Common;
 import com.example.foodgalaxy.Common.MultiSelectionSpinner;
+import com.example.foodgalaxy.MainActivity;
 import com.example.foodgalaxy.Model.FoodStyle;
 import com.example.foodgalaxy.R;
 import com.example.foodgalaxy.Restaurant.RestaurantsList;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -30,8 +32,10 @@ import java.util.Date;
 
 public class SizeAndDateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText size, dateOfBooking, timeOfBooking;
+    EditText size, timeOfBooking;
+    TextView dateOfBooking;
     MultiSelectionSpinner style;
+    DatePickerDialog.OnDateSetListener dateSetListener;
     Button searchbtn, dateBtn, timeBtn;
     private int mYear, mMonth, mDay, mHour, mMinute;
     boolean IsDelivery;
