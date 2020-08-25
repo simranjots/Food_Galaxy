@@ -188,9 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_menu) {
-            // Handle the camera action
-        } else if (id == R.id.nav_cart) {
+        if (id == R.id.nav_cart) {
             Intent cartIntent = new Intent(MainActivity.this,Cart.class);
             startActivity(cartIntent);
 
