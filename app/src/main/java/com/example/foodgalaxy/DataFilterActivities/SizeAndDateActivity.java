@@ -60,7 +60,7 @@ public class SizeAndDateActivity extends AppCompatActivity implements AdapterVie
 
         style.setSelection(categorySelected);
 
-        IsDelivery = getIntent().getBooleanExtra("IsDelivery", false);
+        IsDelivery = getIntent().getBooleanExtra("delivery", false);
 
         searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override

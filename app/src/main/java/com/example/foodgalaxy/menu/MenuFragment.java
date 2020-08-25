@@ -66,29 +66,26 @@ public class MenuFragment extends Fragment {
 
     private void loadMenu() {
 
-
         adapter =  new FirebaseRecyclerAdapter<Menu, MenuAdapter>(Menu.class,R.layout.menus,MenuAdapter.class,menuRef) {
             @Override
             protected void populateViewHolder(MenuAdapter viewHolder, Menu model, int position) {
+                if(!model.isPackage()) {
 
-                ArrayList<Menu> menus = new ArrayList<Menu>();
+                    viewHolder.name.setText(model.getName());
 
+                    viewHolder.price.setText(Double.toString(model.getPrice()) + "$");
 
-
-                viewHolder.name.setText(model.getName());
-
-                viewHolder.price.setText(Double.toString(model.getPrice()) + "$");
-
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        //Get categoryId and send to new activity
-                        Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
-                        RestaurantList.putExtra("menuDetail",adapter.getRef(position).getKey());
-                        startActivity(RestaurantList);
-                        Toast.makeText(getContext(), model.getId(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    viewHolder.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onClick(View view, int position, boolean isLongClick) {
+                            //Get categoryId and send to new activity
+                            Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
+                            RestaurantList.putExtra("menuDetail", adapter.getRef(position).getKey());
+                            startActivity(RestaurantList);
+                            Toast.makeText(getContext(), model.getId(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         };
         recyclerView.setAdapter(adapter);

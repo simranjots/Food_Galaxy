@@ -10,13 +10,13 @@ public class Restaurant implements Parcelable {
     private int cMinsize;
     private int cMaxsize;
     private int Fs_id;
-    private String delivery;
+    private boolean delivery;
     private String imageLink;
 
     public Restaurant() {
     }
 
-    public Restaurant(String Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, String isDelivery, String imageLink) {
+    public Restaurant(String Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
         this.id = Id;
         this.name = name;
         this.address = address;
@@ -27,6 +27,7 @@ public class Restaurant implements Parcelable {
         this.imageLink = imageLink;
     }
 
+
     protected Restaurant(Parcel in) {
         id = in.readString();
         name = in.readString();
@@ -34,8 +35,25 @@ public class Restaurant implements Parcelable {
         cMinsize = in.readInt();
         cMaxsize = in.readInt();
         Fs_id = in.readInt();
-        delivery = in.readString();
+        delivery = in.readByte() != 0;
         imageLink = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(address);
+        dest.writeInt(cMinsize);
+        dest.writeInt(cMaxsize);
+        dest.writeInt(Fs_id);
+        dest.writeByte((byte) (delivery ? 1 : 0));
+        dest.writeString(imageLink);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -97,11 +115,11 @@ public class Restaurant implements Parcelable {
         this.Fs_id = fs_id;
     }
 
-    public String isDelivery() {
+    public boolean isDelivery() {
         return delivery;
     }
 
-    public void setDelivery(String delivery) {
+    public void setDelivery(boolean delivery) {
         this.delivery = delivery;
     }
 
@@ -114,20 +132,7 @@ public class Restaurant implements Parcelable {
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(address);
-        dest.writeInt(cMinsize);
-        dest.writeInt(cMaxsize);
-        dest.writeInt(Fs_id);
-        dest.writeString(delivery);
-        dest.writeString(imageLink);
-    }
+
+
 }
