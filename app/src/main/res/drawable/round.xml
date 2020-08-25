@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <shape>
+        <!-- Round the top corners. -->
+        <corners
+            android:topLeftRadius="@dimen/radius_small"
+            android:topRightRadius="@dimen/radius_small"
+            />
+
+    </shape>
+
+

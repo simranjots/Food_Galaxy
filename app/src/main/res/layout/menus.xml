@@ -20,32 +20,31 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:text=" Name"
+            android:text="Name"
             android:textSize="15dp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
 
 
-
         <TextView
             android:id="@+id/Menu_Price"
             android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_below="@id/Menu_Name"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text=" Price"
+            android:text="Price"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="270dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="290dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/pz"
-            />
+            android:layout_marginTop="10dp"/>
 
     </androidx.cardview.widget.CardView>
 

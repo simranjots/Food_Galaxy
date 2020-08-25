@@ -94,7 +94,7 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
             requestPermission();
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Menu");
+        toolbar.setTitle("Restaurants");
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

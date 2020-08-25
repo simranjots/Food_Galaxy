@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/RestaurantName"
-            android:layout_width="46dp"
+            android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:textSize="30dp"
             android:textStyle="bold"
