@@ -68,15 +68,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearLayout3"
-                    android:background="@android:color/transparent">
+                    android:layout_below="@+id/linearLayout3">
 
                     <Button
                         android:id="@+id/btnPlaceOrder"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_alignParentBottom="true"
-
                         android:background="@drawable/btn_back"
                         android:text="Place Order"
                         android:textColor="@android:color/black"

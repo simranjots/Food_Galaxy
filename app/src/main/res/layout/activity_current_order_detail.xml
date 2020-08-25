@@ -79,7 +79,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:text="Complete Order"
+        android:text=" Complete Order "
+        android:textSize="25dp"
         android:background="@drawable/btn_back"/>
 
 
