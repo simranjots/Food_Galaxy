@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/a_panel_bg">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,41 +30,44 @@
         android:background="@drawable/btn_back"
         android:text="Menu      >"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_below="@id/header"
         android:textColor="@color/black" />
+
     <Button
         android:id="@+id/pmenuPage"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/menuPage"
+        android:layout_marginTop="80dp"
         android:background="@drawable/btn_back"
         android:text="Packages      >"
         android:textAlignment="center"
-        android:textSize="30dp"
-        android:layout_below="@id/menuPage"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
     <Button
         android:id="@+id/pastOrders"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/pmenuPage"
+        android:layout_marginTop="80dp"
         android:background="@drawable/btn_back"
         android:text="Past Orders      >"
         android:textAlignment="center"
-        android:textSize="30dp"
-        android:layout_below="@id/pmenuPage"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
     <Button
         android:id="@+id/currentOrders"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/pastOrders"
+        android:layout_marginTop="80dp"
         android:background="@drawable/btn_back"
         android:text="Current Orders     >"
         android:textAlignment="center"
-        android:textSize="30dp"
-        android:layout_below="@id/pastOrders"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 </RelativeLayout>
