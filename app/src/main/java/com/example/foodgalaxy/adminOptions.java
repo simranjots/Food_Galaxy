@@ -29,6 +29,8 @@ public class adminOptions extends AppCompatActivity {
             public void onClick(View v) {
                 Common.isPredefine = false;
 
+                startActivity(new Intent(adminOptions.this,adminMenu.class));
+
             }
         });
 
@@ -36,6 +38,7 @@ public class adminOptions extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Common.isPredefine = true;
+                startActivity(new Intent(adminOptions.this,adminMenu.class));
 
             }
         });

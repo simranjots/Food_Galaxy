@@ -8,7 +8,7 @@ public class Menu implements Parcelable {
      private String name;
      private double price;
      private String description;
-     private int R_id;
+     private int r_Id;
      private boolean predefinedMenu;
      private String imageLink;
 
@@ -20,7 +20,7 @@ public class Menu implements Parcelable {
         this.name = name;
         this.price = price;
         this.description = description;
-        R_id = r_id;
+        r_Id = r_id;
         this.predefinedMenu = predefinedMenu;
         this.imageLink = imageLink;
     }
@@ -30,7 +30,7 @@ public class Menu implements Parcelable {
         name = in.readString();
         price = in.readDouble();
         description = in.readString();
-        R_id = in.readInt();
+        r_Id = in.readInt();
         predefinedMenu = in.readByte() != 0;
         imageLink = in.readString();
     }
@@ -80,11 +80,11 @@ public class Menu implements Parcelable {
     }
 
     public int getR_Id() {
-        return R_id;
+        return r_Id;
     }
 
     public void setR_Id(int r_Id) {
-        R_id = r_Id;
+        this.r_Id = r_Id;
     }
 
     public boolean isPredefinedMenu() {
@@ -116,7 +116,7 @@ public class Menu implements Parcelable {
         dest.writeString(name);
         dest.writeDouble(price);
         dest.writeString(description);
-        dest.writeInt(R_id);
+        dest.writeInt(r_Id);
         dest.writeByte((byte) (predefinedMenu ? 1 : 0));
         dest.writeString(imageLink);
     }

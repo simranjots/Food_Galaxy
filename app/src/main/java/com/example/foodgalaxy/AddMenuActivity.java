@@ -3,11 +3,13 @@ package com.example.foodgalaxy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.foodgalaxy.Common.Common;
 import com.example.foodgalaxy.Model.Menu;
@@ -45,6 +47,8 @@ public class AddMenuActivity extends AppCompatActivity {
         database= FirebaseDatabase.getInstance();
         menu = database.getReference().child("Menu");
 
+
+
         menu_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,9 +58,7 @@ public class AddMenuActivity extends AppCompatActivity {
                         if(snapshot.exists()){
                             id = (snapshot.getChildrenCount());
                         }
-                        n_id = (int) id;
-                        Menu menu_data = new Menu(n_id,menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(), Common.currentRestaurant.getId(),Common.isPredefine,"Demo");
-                        menu.child(String.valueOf(n_id)).setValue(menu_data);
+
                     }
 
                     @Override
@@ -64,10 +66,14 @@ public class AddMenuActivity extends AppCompatActivity {
 
                     }
                 });
-
+                n_id = (int) id + 1;
+                Menu menu_data = new Menu(n_id,menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(), Common.currentRestaurant.getId(),Common.isPredefine,"Demo");
+                menu.child(String.valueOf(n_id)).setValue(menu_data);
+                Toast.makeText(AddMenuActivity.this, "Item Added", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AddMenuActivity.this,adminOptions.class));
+                finish();
             }
         });
-
 
     }
 }
