@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgalaxy.Common.Common;
 import com.example.foodgalaxy.Interface.ItemClickListener;
+import com.example.foodgalaxy.Model.Orders;
 import com.example.foodgalaxy.Model.Request;
 import com.example.foodgalaxy.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -29,7 +30,7 @@ public class OrderStatus extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference requests;
 
-    FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter = null;
+    FirebaseRecyclerAdapter<Orders, OrderViewHolder> adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class OrderStatus extends AppCompatActivity {
 
         // Firebase
         database = FirebaseDatabase.getInstance();
-        requests = database.getReference("Requests");
+        requests = database.getReference("Orders");
 
         // set recycler view
         recyclerView.setHasFixedSize(true);
@@ -47,29 +48,29 @@ public class OrderStatus extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // loading order status
-        loadOrders(Common.currentUser.getPhone());
+        loadOrders(Common.currentUser.getId());
     }
 
     /**
      * Loading order status
      * @param phone
      */
-    private void loadOrders(String phone) {
-        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
-                Request.class,
+    private void loadOrders(long phone) {
+        adapter = new FirebaseRecyclerAdapter<Orders, OrderViewHolder>(
+                Orders.class,
                 R.layout.order_layout,
                 OrderViewHolder.class,
-                requests.orderByChild("phone")
+                requests.orderByChild("u_Id")
                         .equalTo(phone)
         ) {
             @Override
-            protected void populateViewHolder(OrderViewHolder viewHolder, Request model, int position) {
+            protected void populateViewHolder(OrderViewHolder viewHolder, Orders model, int position) {
                 // get key from DatabaseReference
                 viewHolder.txtOrderId.setText("Order No. : " + adapter.getRef(position).getKey());
                 // set text for order status, address and phone
                 viewHolder.txtOrderStatus.setText("Order Status. : " + convertCodeToStatus(model.getStatus()));
-                viewHolder.txtOrAddress.setText("Order Address. : " + model.getAddress());
-                viewHolder.txtOrderPhone.setText("Order Total. : " + model.getTotal());
+                viewHolder.txtOrAddress.setText("Order Address. : " + model.getDeliveryAddress());
+                viewHolder.txtOrderPhone.setText("Order Total. : " + model.getTotalPrice());
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

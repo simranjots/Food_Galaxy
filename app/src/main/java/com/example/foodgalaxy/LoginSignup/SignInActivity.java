@@ -146,11 +146,6 @@ public class SignInActivity extends AppCompatActivity {
                                 Intent homeIntent= new Intent(SignInActivity.this,PickupDeliveryActivity.class);
                                 Common.currentUser=user;
                                 startActivity(homeIntent);
-                                SharedPreferences sharedPreferences = getSharedPreferences("U_Id", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putLong("User_Id",user.getId());
-                                editor.commit();
-
                                 finish();
 
                             }

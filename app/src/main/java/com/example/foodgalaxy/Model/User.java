@@ -1,41 +1,41 @@
 package com.example.foodgalaxy.Model;
 
 public class User {
-    private long Id;
-    private String Rest_id;
+    private long id;
+    private String rest_id;
     private String Name;
     private String Password;
     private String Phone;
     private String Address;
-    private String IsStaff;
+    private boolean isStaff;
 
     public User() {
     }
 
-    public User(long id,String name, String password, String phone, String address) {
-        Id = id;
+    public User(long id, String name, String password, String phone, String address) {
+        this.id = id;
+        this.rest_id = "";
         Name = name;
         Password = password;
         Phone = phone;
         Address = address;
-        IsStaff = "false";
-        Rest_id = "null";
+        this.isStaff = false;
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getRest_id() {
-        return Rest_id;
+        return rest_id;
     }
 
     public void setRest_id(String rest_id) {
-        Rest_id = rest_id;
+        this.rest_id = rest_id;
     }
 
     public String getName() {
@@ -70,11 +70,11 @@ public class User {
         Address = address;
     }
 
-    public String getIsStaff() {
-        return IsStaff;
+    public boolean getIsStaff() {
+        return isStaff;
     }
 
-    public void setIsStaff(String isStaff) {
-        IsStaff = isStaff;
+    public void setIsStaff(boolean isStaff) {
+        this.isStaff = isStaff;
     }
 }

@@ -1,45 +1,68 @@
 package com.example.foodgalaxy.Model;
 
-import java.util.Date;
+import java.util.List;
 
 public class Orders {
 
-    private int Id;
-    private int R_Id;
-    private int U_Id;
-    private double totalPrice;
+    private long id;
+    private int r_Id;
+    private long u_Id;
+    private String totalPrice;
     private String status;
     private String deliveryAddress;
     private String dateOrdered;
+    private String paymentState;
+    private List<CartItem> foods;
 
-    public Orders(int id, int r_Id, int u_Id, double end_price, String status, String deliveryAddress,  String dateOrdered) {
-        Id = id;
-        R_Id = r_Id;
-        U_Id = u_Id;
-        totalPrice = end_price;
+    public Orders(){}
+
+    public String getPaymentState() {
+        return paymentState;
+    }
+
+    public void setPaymentState(String paymentState) {
+        this.paymentState = paymentState;
+    }
+
+    public List<CartItem> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(List<CartItem> foods) {
+        this.foods = foods;
+    }
+
+    public Orders(long id, int r_Id, long u_Id, String totalPrice, String status, String deliveryAddress, String dateOrdered, String paymentState, List<CartItem> foods) {
+        this.id = id;
+        this.r_Id = r_Id;
+        this.u_Id = u_Id;
+        this.totalPrice = totalPrice;
         this.status = status;
         this.deliveryAddress = deliveryAddress;
         this.dateOrdered = dateOrdered;
+        this.paymentState = paymentState;
+        this.foods = foods;
     }
 
-    public int getId() {
-        return Id;
+
+    public long getId() {
+        return id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getR_Id() {
-        return R_Id;
+        return r_Id;
     }
 
     public void setR_Id(int r_Id) {
-        R_Id = r_Id;
+        this.r_Id = r_Id;
     }
 
-    public int getU_Id() {
-        return U_Id;
+    public long getU_Id() {
+        return u_Id;
     }
 
     public String getDeliveryAddress() {
@@ -50,15 +73,15 @@ public class Orders {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public void setU_Id(int u_Id) {
-        U_Id = u_Id;
+    public void setU_Id(long u_Id) {
+        this.u_Id = u_Id;
     }
 
-    public double getTotalPrice() {
+    public String getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 
