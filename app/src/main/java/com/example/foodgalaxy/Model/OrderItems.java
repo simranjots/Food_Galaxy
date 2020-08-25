@@ -2,32 +2,32 @@ package com.example.foodgalaxy.Model;
 
 public class OrderItems {
     private int Id;
-    private int Order_Id;
-    private int Menu_Id;
+    private String MenuName;
+    private double price;
     private int quantity;
 
     public int getId() {
         return Id;
     }
 
+    public String getMenuName() {
+        return MenuName;
+    }
+
+    public void setMenuName(String menuName) {
+        MenuName = menuName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public void setId(int id) {
         Id = id;
-    }
-
-    public int getOrder_Id() {
-        return Order_Id;
-    }
-
-    public void setOrder_Id(int order_Id) {
-        Order_Id = order_Id;
-    }
-
-    public int getMenu_Id() {
-        return Menu_Id;
-    }
-
-    public void setMenu_Id(int menu_Id) {
-        Menu_Id = menu_Id;
     }
 
     public int getQuantity() {
@@ -38,10 +38,10 @@ public class OrderItems {
         this.quantity = quantity;
     }
 
-    public OrderItems(int id, int order_Id, int menu_Id, int quantity) {
+    public OrderItems(int id, String menuName, int quantity, double price) {
         Id = id;
-        Order_Id = order_Id;
-        Menu_Id = menu_Id;
+        MenuName = menuName;
         this.quantity = quantity;
+        this.price = price;
     }
 }

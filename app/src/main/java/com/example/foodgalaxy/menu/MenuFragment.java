@@ -17,11 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgalaxy.Interface.ItemClickListener;
 import com.example.foodgalaxy.Model.Menu;
+import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.R;
+import com.example.foodgalaxy.Restaurant.RestaurantsList;
 import com.example.foodgalaxy.ViewHolder.MenuAdapter;
+import com.example.foodgalaxy.ViewHolder.RestaurantAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -29,10 +35,10 @@ public class MenuFragment extends Fragment {
 
     View view;
     ArrayList<Menu> menuList = new ArrayList<Menu>();
-    int restaurant_Id;
+    int restaurant_Id = 0;
     FirebaseDatabase database;
     DatabaseReference menuRef;
-    FirebaseRecyclerAdapter<Menu, MenuAdapter> adapter;
+    //FirebaseRecyclerAdapter<Menu, MenuAdapter> adapter;
     RecyclerView recyclerView;
 
     public MenuFragment(){
@@ -45,10 +51,39 @@ public class MenuFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.menulist,container,false);
 
-        recyclerView = view.findViewById(R.id.menuRecycler);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        loadMenu();
+        database= FirebaseDatabase.getInstance();
+        menuRef = database.getReference().child("Menu");
+
+        menuRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Iterable<DataSnapshot> children = snapshot.getChildren();
+                    for(DataSnapshot data : children)
+                    {
+                        Menu m = data.getValue(Menu.class);
+                        menuList.add(m);
+                    }
+
+
+
+
+                    menuList = filterdata(menuList);
+                    Toast.makeText(getActivity(), "Size" + menuList.size(),
+                            Toast.LENGTH_LONG).show();
+                    recyclerView = view.findViewById(R.id.menuRecycler);
+                    MenuAdapter rcdp = new MenuAdapter(menuList, getActivity());
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView.setAdapter(rcdp);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         return view;
     }
 
@@ -56,45 +91,10 @@ public class MenuFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Init Firebase
-        database= FirebaseDatabase.getInstance();
-        menuRef = database.getReference("Menu");
-
-        menuList = filterdata(menuList);
+        //database= FirebaseDatabase.getInstance();
+        //menuRef = database.getReference().child("Menu");
 
     }
-
-
-    private void loadMenu() {
-
-        adapter =  new FirebaseRecyclerAdapter<Menu, MenuAdapter>(Menu.class,R.layout.menus,MenuAdapter.class,menuRef) {
-            @Override
-            protected void populateViewHolder(MenuAdapter viewHolder, Menu model, int position) {
-                if(!model.isPackage()) {
-
-                    viewHolder.name.setText(model.getName());
-
-                    viewHolder.price.setText(Double.toString(model.getPrice()) + "$");
-
-                    viewHolder.setItemClickListener(new ItemClickListener() {
-                        @Override
-                        public void onClick(View view, int position, boolean isLongClick) {
-                            //Get categoryId and send to new activity
-                            Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
-                            RestaurantList.putExtra("menuDetail", adapter.getRef(position).getKey());
-                            startActivity(RestaurantList);
-                            Toast.makeText(getContext(), model.getId(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            }
-        };
-        recyclerView.setAdapter(adapter);
-    }
-
-//    public void addData(){
-//        menuList.add(new Menu("1","Chicken", "12.9","Best chicken tikka with seasoning", 2, false,"https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&url=https%3A%2F%2Fcdn-image.foodandwine.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F4_3_horizontal_-_1200x900%2Fpublic%2Findiana-style-fried-chicken-ft-recipe0620.jpg%3Fitok%3DiK4ZWHUz"));
-//        menuList.add(new Menu("2","Fries", "13.9","Sweet Potato fries", 2, false, "https://img.apmcdn.org/4b2716626c9ff3f6e5dfebe520eb592c33cf1e7b/uncropped/941f50-splendid-table-french-fries.jpg"));
-//    }
 
     public ArrayList<Menu> filterdata(ArrayList<Menu> menuList){
 
@@ -105,9 +105,16 @@ public class MenuFragment extends Fragment {
 
         restaurant_Id = sharedPref.getInt("Rest_Id",0);
 
+        Toast.makeText(getActivity(), "R_Id" + restaurant_Id,
+                Toast.LENGTH_LONG).show();
+
 
         for(Menu m : menuList)
         {
+            Toast.makeText(getActivity(), "MEnu_Rid" + m.getR_Id(),
+                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "ispac" + m.isPackage(),
+                    Toast.LENGTH_LONG).show();
             if(m.isPackage() == false && m.getR_Id() == restaurant_Id )
             {
                 result.add(m);
@@ -115,9 +122,6 @@ public class MenuFragment extends Fragment {
         }
 
         return result;
-
-
-
     }
 
 

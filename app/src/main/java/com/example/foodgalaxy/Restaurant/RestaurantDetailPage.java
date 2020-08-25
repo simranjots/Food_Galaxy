@@ -29,7 +29,7 @@ public class RestaurantDetailPage extends AppCompatActivity {
 
     TabLayout tableLayout;
     ViewPager viewPager;
-    String restaurant;
+    //String restaurant;
     Restaurant rest;
     int r_Id = 0;
     Database databases;
@@ -50,26 +50,9 @@ public class RestaurantDetailPage extends AppCompatActivity {
         foodList = database.getReference("Restaurant");
 
         restaurantName = (TextView) findViewById(R.id.RestaurantName);
-        restaurant = getIntent().getStringExtra("restaurantDetails");
-
-        foodList.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    Toast.makeText(RestaurantDetailPage.this, restaurant, Toast.LENGTH_SHORT).show();
-                    Menu menu = snapshot.child(restaurant).getValue(Menu.class);
-                    restaurantName.setText(menu.getName());
-                    r_Id = Integer.parseInt(restaurant);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
+        Restaurant restaurant = getIntent().getParcelableExtra("restaurantDetails");
+        restaurantName.setText(restaurant.getName());
+        r_Id = restaurant.getId();
 
         SharedPreferences sharedPreferences = getSharedPreferences("R_Id",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

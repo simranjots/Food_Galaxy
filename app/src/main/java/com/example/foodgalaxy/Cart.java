@@ -2,8 +2,10 @@ package com.example.foodgalaxy;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -29,6 +31,7 @@ import com.example.foodgalaxy.Common.Config;
 import com.example.foodgalaxy.Common.SwipeToDeleteCallback;
 import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.Model.CartItem;
+import com.example.foodgalaxy.Model.Orders;
 import com.example.foodgalaxy.Model.Request;
 import com.example.foodgalaxy.ViewHolder.CartAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -51,7 +54,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -117,7 +124,7 @@ public class Cart extends AppCompatActivity {
 
         // Init Firebase
         database = FirebaseDatabase.getInstance();
-        requests = database.getReference("Requests");
+        requests = database.getReference("Orders");
 
         // setting recycler view
         recyclerView.setHasFixedSize(true);
@@ -210,6 +217,7 @@ public class Cart extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == PAYPAL_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
@@ -217,14 +225,36 @@ public class Cart extends AppCompatActivity {
                     try {
                         String paymentDetail = confirmation.toJSONObject().toString(4);
                         JSONObject jsonObject = new JSONObject(paymentDetail);
+                        Context context = getBaseContext();
+                        SharedPreferences sharedPref = context.getSharedPreferences(
+                                "R_Id", Context.MODE_PRIVATE);
+
+                       int restaurant_Id = sharedPref.getInt("Rest_Id",0);
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        Date date = new Date();
 
                         // Create new request
-                        Request request = new Request(
-                                Common.currentUser.getPhone(),
-                                Common.currentUser.getName(),
-                                address,
+//                        Request request = new Request(
+//                                Common.currentUser.getPhone(),
+//                                Common.currentUser.getName(),
+//                                address,
+//                                txtTotalPrice.getText().toString(),
+//                                "0",
+//                                jsonObject.getJSONObject("response").getString("state"),
+//                                carts
+//                        );
+
+
+                        // Create new Order
+                        Orders order = new Orders(
+                                Long.valueOf(System.currentTimeMillis()),
+                                restaurant_Id,
+                                Common.currentUser.getId(),
                                 txtTotalPrice.getText().toString(),
                                 "0",
+                                address,
+                                formatter.format(date),
                                 jsonObject.getJSONObject("response").getString("state"),
                                 carts
                         );
@@ -233,7 +263,7 @@ public class Cart extends AppCompatActivity {
                         // Submit to Firebase
                         // Using System.CurrentMillis to key
                         requests.child(String.valueOf(System.currentTimeMillis()))
-                                .setValue(request);
+                                .setValue(order);
                         // Deleting cart
                         new Database(getBaseContext()).cleanCart();
                         Toast.makeText(Cart.this, " Thank you, Order Place", Toast.LENGTH_SHORT).show();

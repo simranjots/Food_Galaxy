@@ -1,7 +1,7 @@
 package com.example.foodgalaxy.Model;
 
 public class CartItem {
-    private String MenuId;
+    private String menuId;
     private String name;
     private String price;
     private String quantity;
@@ -9,7 +9,7 @@ public class CartItem {
     private String comment;
 
     public CartItem(String menuId, String name, String price, String quantity, String spicy, String comment) {
-        MenuId = menuId;
+        this.menuId = menuId;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -17,12 +17,15 @@ public class CartItem {
         this.comment = comment;
     }
 
+    public CartItem() {
+    }
+
     public String getMenuId() {
-        return MenuId;
+        return menuId;
     }
 
     public void setMenuId(String menuId) {
-        MenuId = menuId;
+        this.menuId = menuId;
     }
 
     public String getName() {

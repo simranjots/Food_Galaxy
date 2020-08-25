@@ -52,7 +52,7 @@ public class PredefinedMenuAdapter extends  RecyclerView.Adapter<PredefinedMenuA
             public void onClick(View v) {
 
                 Intent intent = new Intent(v.getContext(), FoodDetail.class);
-                intent.putExtra("preDefinedmenuDetail",menus.get(position));
+                intent.putExtra("preDefinedmenuDetail",menus.get(position).getId());
                 v.getContext().startActivity(intent);
 
             }

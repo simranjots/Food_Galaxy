@@ -4,11 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Menu implements Parcelable {
-     private String Id;
+     private String id;
      private String name;
      private double price;
      private String description;
-     private int R_Id;
+     private int R_id;
      private boolean isPackage;
      private String imageLink;
 
@@ -16,11 +16,11 @@ public class Menu implements Parcelable {
     }
 
     protected Menu(Parcel in) {
-        Id = in.readString();
+        id = in.readString();
         name = in.readString();
         price = in.readDouble();
         description = in.readString();
-        R_Id = in.readInt();
+        R_id = in.readInt();
         isPackage = in.readByte() != 0;
         imageLink = in.readString();
     }
@@ -38,11 +38,11 @@ public class Menu implements Parcelable {
     };
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -70,11 +70,11 @@ public class Menu implements Parcelable {
     }
 
     public int getR_Id() {
-        return R_Id;
+        return R_id;
     }
 
     public void setR_Id(int r_Id) {
-        R_Id = r_Id;
+        R_id = r_Id;
     }
 
     public boolean isPackage() {
@@ -95,11 +95,11 @@ public class Menu implements Parcelable {
 
 
     public Menu(String id, String name, double price, String description, int r_Id, boolean isPackage, String imageLink) {
-        this.Id = id;
+        this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
-        this.R_Id = r_Id;
+        this.R_id = r_Id;
         this.isPackage = isPackage;
         this.imageLink = imageLink;
     }
@@ -111,11 +111,11 @@ public class Menu implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(Id);
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeDouble(price);
         dest.writeString(description);
-        dest.writeInt(R_Id);
+        dest.writeInt(R_id);
         dest.writeByte((byte) (isPackage ? 1 : 0));
         dest.writeString(imageLink);
     }

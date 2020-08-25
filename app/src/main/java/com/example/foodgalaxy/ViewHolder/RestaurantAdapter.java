@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgalaxy.Model.Restaurant;
+import com.example.foodgalaxy.OrderStatus;
 import com.example.foodgalaxy.R;
 import com.example.foodgalaxy.Restaurant.RestaurantDetailPage;
 import com.example.foodgalaxy.Restaurant.RestaurantsList;
@@ -48,6 +50,13 @@ public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.V
 
         holder.name.setText(restaurants.get(position).getName());
         Picasso.with(this.mContext).load(restaurants.get(position).getImageLink()).into(holder.image);
+        holder.direct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.getContext().startActivity(new Intent(v.getContext(), OrderStatus.class));
+            }
+        });
+
         holder.restaurantList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,11 +79,13 @@ public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.V
     {
         TextView name;
         ImageView image;
+        Button direct;
         LinearLayout restaurantList;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.menu_name);
             image = itemView.findViewById(R.id.menu_image);
+            direct = itemView.findViewById(R.id.menu_direction);
             restaurantList = itemView.findViewById(R.id.click);
 
         }
