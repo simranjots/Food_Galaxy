@@ -74,7 +74,7 @@ public class SizeAndDateActivity extends AppCompatActivity implements AdapterVie
                     Toast.makeText(getApplicationContext(), "All fields are Required!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    if(Integer.parseInt(size.getText().toString()) > 10) {
+                    if(Integer.parseInt(size.getText().toString()) >= 10) {
                         try {
                             Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBooking.getText().toString());
                             if(date1.compareTo(new Date()) < 0)

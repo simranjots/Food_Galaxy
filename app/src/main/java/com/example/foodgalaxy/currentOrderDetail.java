@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -120,6 +121,7 @@ public class currentOrderDetail extends AppCompatActivity {
 
 
         if(Common.isCurrentOrder) {
+            Toast.makeText(currentOrderDetail.this, "O_Id" +  o1.getId() , Toast.LENGTH_SHORT).show();
 
             completeOrder.setVisibility(View.VISIBLE);
 
@@ -127,16 +129,22 @@ public class currentOrderDetail extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    if(o1.getDeliveryAddress() != "")
+                    if(!o1.getDeliveryAddress().isEmpty())
                     {
-                    status = "2";
+                    status = "1";
                     }
                     else
                     {
-                        status = "1";
+                        status = "2";
                     }
 
+
+                    orders.child(Long.toString(o1.getId())).child("status").setValue(status);
+                    startActivity(new Intent(currentOrderDetail.this,aPanel.class));
+                    finish();
+
                 }
+
             });
         }
         else
