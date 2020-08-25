@@ -68,27 +68,25 @@ public class PreDefinedMenuFragment extends Fragment {
     private void loadMenu() {
 
 
-        adapter =  new FirebaseRecyclerAdapter<Menu, MenuAdapter>(Menu.class,R.layout.menus,MenuAdapter.class,menuRef) {
+        adapter =  new FirebaseRecyclerAdapter<Menu, MenuAdapter>(Menu.class,R.layout.predefinedmenus,MenuAdapter.class,menuRef) {
             @Override
             protected void populateViewHolder(MenuAdapter viewHolder, Menu model, int position) {
 
-                ArrayList<Menu> menus = new ArrayList<Menu>();
-                double price = 12.9;
+if(model.isPackage()) {
+    viewHolder.name.setText(model.getName());
 
+    viewHolder.price.setText(model.getPrice() + "$");
 
-                viewHolder.name.setText(model.getName());
-
-                viewHolder.price.setText(model.getPrice() + "$");
-
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        //Get categoryId and send to new activity
-                        Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
-                        RestaurantList.putExtra("menuDetail",adapter.getRef(position).getKey());
-                        startActivity(RestaurantList);
-                    }
-                });
+    viewHolder.setItemClickListener(new ItemClickListener() {
+        @Override
+        public void onClick(View view, int position, boolean isLongClick) {
+            //Get categoryId and send to new activity
+            Intent RestaurantList = new Intent(getContext(), FoodDetail.class);
+            RestaurantList.putExtra("preDefinedmenuDetail", adapter.getRef(position).getKey());
+            startActivity(RestaurantList);
+        }
+    });
+}
             }
         };
         recyclerView.setAdapter(adapter);

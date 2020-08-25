@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgalaxy.DataFilterActivities.SizeAndDateActivity;
+import com.example.foodgalaxy.Restaurant.RestaurantsList;
 
 public class DeliveryAddressDetails extends AppCompatActivity {
 
@@ -30,6 +32,7 @@ public class DeliveryAddressDetails extends AppCompatActivity {
         country = (EditText) findViewById(R.id.country);
         deliverHere = (Button) findViewById(R.id.btnDelivereHere);
         IsDelivery = getIntent().getBooleanExtra("IsDelivery", false);
+        Toast.makeText(DeliveryAddressDetails.this, "pehla: " + IsDelivery, Toast.LENGTH_SHORT).show();
 
         deliverHere.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +52,7 @@ public class DeliveryAddressDetails extends AppCompatActivity {
         editor.putString("deliveryAddress",address);
         editor.commit();
         //i.putExtra("address",deliveryAddress);
-        i.putExtra("IsDelivery",IsDelivery);
+        i.putExtra("delivery",IsDelivery);
         startActivity(i);
 
 

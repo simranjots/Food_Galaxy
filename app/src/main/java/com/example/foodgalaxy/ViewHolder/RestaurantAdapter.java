@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,15 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.R;
 import com.example.foodgalaxy.Restaurant.RestaurantDetailPage;
+import com.example.foodgalaxy.Restaurant.RestaurantsList;
+import com.example.foodgalaxy.menu.FoodDetail;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.ViewHolder>  {
 
-    private ArrayList<Restaurant> restaurants;
+    private List<Restaurant> restaurants;
     private Context mContext;
 
-    public RestaurantAdapter(ArrayList<Restaurant> restaurants, Context mContext)
+    public RestaurantAdapter(List<Restaurant> restaurants, Context mContext)
     {
         this.restaurants = restaurants;
         this.mContext = mContext;
@@ -42,9 +47,7 @@ public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.V
     public void onBindViewHolder(@NonNull RestaurantAdapter.ViewHolder holder, final int position) {
 
         holder.name.setText(restaurants.get(position).getName());
-
-
-
+        Picasso.with(this.mContext).load(restaurants.get(position).getImageLink()).into(holder.image);
         holder.restaurantList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,10 +69,12 @@ public class RestaurantAdapter extends  RecyclerView.Adapter<RestaurantAdapter.V
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name;
+        ImageView image;
         LinearLayout restaurantList;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.menu_name);
+            image = itemView.findViewById(R.id.menu_image);
             restaurantList = itemView.findViewById(R.id.click);
 
         }
