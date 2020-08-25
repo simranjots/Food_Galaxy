@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightgray"
     android:padding="16dp"
     tools:context=".Cart">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listCart"
-        android:background="@android:color/transparent"
+        android:background="@color/lightgray"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -17,7 +18,7 @@
         android:layout_alignParentBottom="true"
         app:cardCornerRadius="18dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="@color/input_register_bg"
+        app:cardBackgroundColor="@color/gray"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
