@@ -9,10 +9,20 @@ public class Menu implements Parcelable {
      private double price;
      private String description;
      private int R_id;
-     private boolean isPackage;
+     private boolean ipackage;
      private String imageLink;
 
     public Menu() {
+    }
+
+    public Menu(String id, String name, double price, String description, int r_id, boolean ipackage, String imageLink) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        R_id = r_id;
+        this.ipackage = ipackage;
+        this.imageLink = imageLink;
     }
 
     protected Menu(Parcel in) {
@@ -21,7 +31,7 @@ public class Menu implements Parcelable {
         price = in.readDouble();
         description = in.readString();
         R_id = in.readInt();
-        isPackage = in.readByte() != 0;
+        ipackage = in.readByte() != 0;
         imageLink = in.readString();
     }
 
@@ -77,12 +87,12 @@ public class Menu implements Parcelable {
         R_id = r_Id;
     }
 
-    public boolean isPackage() {
-        return isPackage;
+    public boolean ipackage() {
+        return ipackage;
     }
 
-    public void setPackage(boolean aPackage) {
-        isPackage = aPackage;
+    public void setPackage(boolean ipackage) {
+        this.ipackage = ipackage;
     }
 
     public String getImageLink() {
@@ -94,15 +104,6 @@ public class Menu implements Parcelable {
     }
 
 
-    public Menu(String id, String name, double price, String description, int r_Id, boolean isPackage, String imageLink) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.R_id = r_Id;
-        this.isPackage = isPackage;
-        this.imageLink = imageLink;
-    }
 
     @Override
     public int describeContents() {
@@ -116,7 +117,7 @@ public class Menu implements Parcelable {
         dest.writeDouble(price);
         dest.writeString(description);
         dest.writeInt(R_id);
-        dest.writeByte((byte) (isPackage ? 1 : 0));
+        dest.writeByte((byte) (ipackage ? 1 : 0));
         dest.writeString(imageLink);
     }
 }

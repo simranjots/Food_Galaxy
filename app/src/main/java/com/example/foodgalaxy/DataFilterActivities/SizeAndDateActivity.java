@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 
+import com.example.foodgalaxy.Common.Common;
 import com.example.foodgalaxy.Common.MultiSelectionSpinner;
 import com.example.foodgalaxy.Model.FoodStyle;
 import com.example.foodgalaxy.R;
@@ -13,6 +14,7 @@ import com.example.foodgalaxy.Restaurant.RestaurantsList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,7 +23,10 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SizeAndDateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -60,17 +65,39 @@ public class SizeAndDateActivity extends AppCompatActivity implements AdapterVie
 
         style.setSelection(categorySelected);
 
-        IsDelivery = getIntent().getBooleanExtra("delivery", false);
-
         searchbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i1 = new Intent(SizeAndDateActivity.this, RestaurantsList.class);
-                i1.putExtra("size", size.getText().toString());
-                i1.putExtra("style", style.getSelectedItems());
-                i1.putExtra("isDelivery", IsDelivery);
-                i1.putExtra("dateTime",dateTime);
-                startActivity(i1);
+                if(TextUtils.isEmpty(size.getText().toString()) || TextUtils.isEmpty(dateOfBooking.getText().toString()) || TextUtils.isEmpty(timeOfBooking.getText().toString()) )
+                {
+                    Toast.makeText(getApplicationContext(), "All fields are Required!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if(Integer.parseInt(size.getText().toString()) > 10) {
+                        try {
+                            Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBooking.getText().toString());
+                            if(date1.compareTo(new Date()) < 0)
+                            {
+                                Toast.makeText(getApplicationContext(), "Please enter a date greater than today!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            else
+                            {
+                                i1.putExtra("size", size.getText().toString());
+                                i1.putExtra("style", style.getSelectedItems());
+                                Common.dateOfBooking = dateOfBooking.getText().toString() + " " + timeOfBooking.getText().toString();
+                                startActivity(i1);
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Minimum catering of people is 10", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 

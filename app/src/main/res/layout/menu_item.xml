@@ -97,17 +97,16 @@
                     android:orientation="horizontal"
                     >
 
-                    <Button
-                        android:id="@+id/menu_direction"
+                    <TextView
+                        android:id="@+id/ordersDone"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/btn_back"
                         android:fontFamily="sans-serif-medium"
-                        android:text="direction"
+                        android:text="Orders Done"
                         android:textColor="@color/black"
                         android:textSize="12dp">
 
-                    </Button>
+                    </TextView>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

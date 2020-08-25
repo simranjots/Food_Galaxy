@@ -7,5 +7,7 @@ public class Common {
 
     public static User currentUser;
     public static GoogleSignInAccount  GoogleUser;
+    public static boolean isDeliver = false;
+    public static String dateOfBooking;
 
 }

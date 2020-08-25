@@ -12,6 +12,7 @@ public class Orders {
     private String deliveryAddress;
     private String dateOrdered;
     private String paymentState;
+    private String dateOfBooking;
     private List<CartItem> foods;
 
     public Orders(){}
@@ -32,7 +33,15 @@ public class Orders {
         this.foods = foods;
     }
 
-    public Orders(long id, int r_Id, long u_Id, String totalPrice, String status, String deliveryAddress, String dateOrdered, String paymentState, List<CartItem> foods) {
+    public String getDateOfBooking() {
+        return dateOfBooking;
+    }
+
+    public void setDateOfBooking(String dateOfBooking) {
+        this.dateOfBooking = dateOfBooking;
+    }
+
+    public Orders(long id, int r_Id, long u_Id, String totalPrice, String status, String deliveryAddress, String dateOrdered, String paymentState, String dateOfBooking, List<CartItem> foods) {
         this.id = id;
         this.r_Id = r_Id;
         this.u_Id = u_Id;
@@ -41,6 +50,7 @@ public class Orders {
         this.deliveryAddress = deliveryAddress;
         this.dateOrdered = dateOrdered;
         this.paymentState = paymentState;
+        this.dateOfBooking = dateOfBooking;
         this.foods = foods;
     }
 

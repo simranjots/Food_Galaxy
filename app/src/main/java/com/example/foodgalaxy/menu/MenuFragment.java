@@ -65,12 +65,7 @@ public class MenuFragment extends Fragment {
                         menuList.add(m);
                     }
 
-
-
-
                     menuList = filterdata(menuList);
-                    Toast.makeText(getActivity(), "Size" + menuList.size(),
-                            Toast.LENGTH_LONG).show();
                     recyclerView = view.findViewById(R.id.menuRecycler);
                     MenuAdapter rcdp = new MenuAdapter(menuList, getActivity());
                     recyclerView.setHasFixedSize(true);
@@ -90,9 +85,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Init Firebase
-        //database= FirebaseDatabase.getInstance();
-        //menuRef = database.getReference().child("Menu");
 
     }
 
@@ -105,17 +97,12 @@ public class MenuFragment extends Fragment {
 
         restaurant_Id = sharedPref.getInt("Rest_Id",0);
 
-        Toast.makeText(getActivity(), "R_Id" + restaurant_Id,
-                Toast.LENGTH_LONG).show();
+
 
 
         for(Menu m : menuList)
         {
-            Toast.makeText(getActivity(), "MEnu_Rid" + m.getR_Id(),
-                    Toast.LENGTH_LONG).show();
-            Toast.makeText(getActivity(), "ispac" + m.isPackage(),
-                    Toast.LENGTH_LONG).show();
-            if(m.isPackage() == false && m.getR_Id() == restaurant_Id )
+            if(m.ipackage() == false && m.getR_Id() == restaurant_Id )
             {
                 result.add(m);
             }

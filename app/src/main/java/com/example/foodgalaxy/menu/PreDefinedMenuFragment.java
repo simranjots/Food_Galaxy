@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -48,6 +50,10 @@ public class PreDefinedMenuFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.predefinedmenulist,container,false);
+
+        database= FirebaseDatabase.getInstance();
+        menuRef = database.getReference().child("Menu");
+
         menuRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -58,6 +64,12 @@ public class PreDefinedMenuFragment extends Fragment {
                         Menu m = data.getValue(Menu.class);
                         menuList.add(m);
                     }
+                    Toast.makeText(getActivity(), "size:" + menuList.size(),
+                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "1: " + menuList.get(0).ipackage(),
+                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "2: " + menuList.get(1).ipackage(),
+                            Toast.LENGTH_LONG).show();
 
                     menuList = filterdata(menuList);
                     recyclerView = view.findViewById(R.id.predefinedMenuRecycler);
@@ -80,8 +92,7 @@ public class PreDefinedMenuFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Init Firebase
-        database= FirebaseDatabase.getInstance();
-        menuRef = database.getReference("Menu");
+
     }
 
 
@@ -94,9 +105,15 @@ public class PreDefinedMenuFragment extends Fragment {
 
         restaurant_Id = sharedPref.getInt("Rest_Id",0);
 
+        Toast.makeText(getActivity(), "Rest:" + restaurant_Id,
+                Toast.LENGTH_LONG).show();
+
+
         for(Menu m : menuList)
         {
-            if(m.isPackage() == true && m.getR_Id() == restaurant_Id)
+            Toast.makeText(getActivity(), "package:" + m.ipackage(),
+                    Toast.LENGTH_LONG).show();
+            if(m.ipackage() && m.getR_Id() == restaurant_Id)
             {
                 result.add(m);
             }

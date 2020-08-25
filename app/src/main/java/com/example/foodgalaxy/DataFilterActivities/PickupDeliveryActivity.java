@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodgalaxy.Common.Common;
+import com.example.foodgalaxy.Database.Database;
 import com.example.foodgalaxy.DeliveryAddressDetails;
 import com.example.foodgalaxy.R;
 
@@ -33,18 +35,18 @@ public class PickupDeliveryActivity extends AppCompatActivity {
         btnPickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isDelivery = false;
+                Common.isDeliver = false;
                 Intent i1 = new Intent(PickupDeliveryActivity.this, SizeAndDateActivity.class);
-                i1.putExtra("IsDelivery", isDelivery);
                 startActivity(i1);
             }
         });
     }
 
     public void deliveryClicked(){
-        isDelivery = true;
-        Intent i2 = new Intent(PickupDeliveryActivity.this, DeliveryAddressDetails.class);
-        i2.putExtra("IsDelivery", isDelivery);
+        Common.isDeliver = true;
+        Database db = new Database(getBaseContext());
+        db.cleanCart();
+        Intent i2 = new Intent(PickupDeliveryActivity.this, SizeAndDateActivity.class);
         startActivity(i2);
     }
 }

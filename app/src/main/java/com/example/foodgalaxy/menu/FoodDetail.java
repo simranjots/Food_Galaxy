@@ -47,7 +47,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart,btnRating;
     ElegantNumberButton numberButton;
-    RatingBar ratingBar;
+    //RatingBar ratingBar;
 
     String m;
     String pdm;
@@ -79,7 +79,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
         btnCart = (FloatingActionButton) findViewById(R.id.btnCart);
         btnRating = findViewById(R.id.btn_rating);
-        ratingBar = findViewById(R.id.ratingBar);
+        //ratingBar = findViewById(R.id.ratingBar);
 
         m = getIntent().getStringExtra("menuDetail");
         pdm = getIntent().getStringExtra("preDefinedmenuDetail");
@@ -97,7 +97,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             public void onClick(View view) {
 
 
-                Toast.makeText(FoodDetail.this, foodId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FoodDetail.this, foodId, Toast.LENGTH_SHORT).show();
                 // new view inflate for selecting nearby places option
 
                 AlertDialog.Builder builder = new AlertDialog.Builder( FoodDetail.this );
@@ -142,17 +142,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
                     }
                 } );
-//                new Database(getBaseContext()).addToCart(new Order(
-//                        foodId,
-//                        currentFood.getName(),
-//                        numberButton.getNumber(),
-//                        currentFood.getPrice(),
-//                        currentFood.getDiscount()
-
-//                ));
-
-                //new Database(getBaseContext()).cleanCart();
-                //Toast.makeText(FoodDetail.this, "Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -164,12 +153,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppbar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
-//        if (getIntent() != null)
-//            foodId = getIntent().getStringExtra("FoodId");
-//        if (!foodId.isEmpty()) {
-//            getDetailFood(m,pdm);
-//            getRating(foodId);
-//        }
 
         getDetailFood(m,pdm);
 
@@ -192,7 +175,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                 }
                 if(count!=0) {
                     float average = sum/count;
-                    ratingBar.setRating(average);
+                    //ratingBar.setRating(average);
                 }
             }
 

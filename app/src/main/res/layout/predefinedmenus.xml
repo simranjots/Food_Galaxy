@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:id="@+id/predefinedmenuList"
+android:background="@color/gray"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/predefinedmenuList"
-    android:background="@drawable/menu_back"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
+    android:layout_height="100dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
+    android:background="@color/gray"
+    app:cardElevation="@dimen/cardview_default_radius">
 
     <TextView
         android:id="@+id/PMenu_Name"
@@ -15,8 +21,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:text="Name"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
 
     <TextView
         android:id="@+id/PMenu_Price"
@@ -25,34 +33,20 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/PMenu_Name"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:text="Price" />
+        android:text="Price"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/pquantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="Quantity"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_alignRight="@+id/PMenu_Name"/>
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/pMenuImage"
+        android:layout_marginLeft="290dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pz"
+        android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/pquantityNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/pquantity"/>
+</androidx.cardview.widget.CardView>
 
 </RelativeLayout>

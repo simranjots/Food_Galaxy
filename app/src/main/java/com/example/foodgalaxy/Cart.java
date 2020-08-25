@@ -145,7 +145,22 @@ public class Cart extends AppCompatActivity {
         btnPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAlertDialog();
+
+                if (Common.isDeliver){showAlertDialog();}
+                else{
+                    String formatAmount = txtTotalPrice.getText().toString()
+                            .replace("$","")
+                            .replace(",","");
+
+                    PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(formatAmount),
+                            "CAD",
+                            "Food Galaxy",
+                            PayPalPayment.PAYMENT_INTENT_SALE);
+                    Intent intent = new Intent (getApplicationContext() , PaymentActivity.class);
+                    intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
+                    intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
+                    startActivityForResult(intent,PAYPAL_REQUEST_CODE);
+                }
             }
         });
     }
@@ -231,19 +246,9 @@ public class Cart extends AppCompatActivity {
 
                        int restaurant_Id = sharedPref.getInt("Rest_Id",0);
 
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                         Date date = new Date();
 
-                        // Create new request
-//                        Request request = new Request(
-//                                Common.currentUser.getPhone(),
-//                                Common.currentUser.getName(),
-//                                address,
-//                                txtTotalPrice.getText().toString(),
-//                                "0",
-//                                jsonObject.getJSONObject("response").getString("state"),
-//                                carts
-//                        );
 
 
                         // Create new Order
@@ -256,6 +261,7 @@ public class Cart extends AppCompatActivity {
                                 address,
                                 formatter.format(date),
                                 jsonObject.getJSONObject("response").getString("state"),
+                                Common.dateOfBooking,
                                 carts
                         );
 

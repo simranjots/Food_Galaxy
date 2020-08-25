@@ -74,7 +74,6 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
 
 
     List<Restaurant> restaurantsList = new ArrayList<Restaurant>();
-    boolean IsDelivery;
     int size;
     ArrayList<FoodStyle> listOfStyles = new ArrayList<FoodStyle>();
 
@@ -173,12 +172,11 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
 
         ArrayList<Restaurant> result = new ArrayList<Restaurant>();
         size = Integer.parseInt(getIntent().getStringExtra("size"));
-        IsDelivery = getIntent().getBooleanExtra("isDelivery", false);
         listOfStyles = getIntent().getParcelableArrayListExtra("style");
 
         for (Restaurant r : restaurantsList)
         {
-            if((size >= r.getcMinsize() && size <= r.getcMaxsize()) && IsDelivery == r.isDelivery() ){
+            if((size >= r.getcMinsize() && size <= r.getcMaxsize()) && Common.isDeliver == r.isDelivery() ){
                 for(FoodStyle f : listOfStyles)
                 {
                     if(f.getId() == r.getFs_id())
