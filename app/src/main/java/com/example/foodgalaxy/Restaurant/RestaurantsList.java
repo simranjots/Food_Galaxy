@@ -64,7 +64,6 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
     DatabaseReference category;
 
     TextView txtFullName;
-    RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     private final int REQUEST_CODE = 1;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -87,7 +86,7 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurants_list);
+        setContentView(R.layout.activity_home);
 
 
         if(!checkPermission())
@@ -126,12 +125,6 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
 
 
 
-        //Load menu
-        recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
-        recycler_menu.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recycler_menu.setLayoutManager(layoutManager);
-
         signOut = (Button) findViewById(R.id.sign_out);
         googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN);
         //get firebase auth instance
@@ -160,7 +153,7 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
                     }
 
                     restaurantsList = getfilterdata(restaurantsList);
-                    recyclerView = findViewById(R.id.restaurantRecycler);
+                    recyclerView = findViewById(R.id.recycler_menu);
                     RestaurantAdapter rcdp = new RestaurantAdapter(restaurantsList,RestaurantsList.this);
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(RestaurantsList.this));
