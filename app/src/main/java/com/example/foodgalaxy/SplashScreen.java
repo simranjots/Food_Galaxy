@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.splashscreen);
 
         new Handler().postDelayed(new Runnable() {
-            
+
 
             @Override
             public void run() {
