@@ -72,7 +72,7 @@ public class currentOrderAdapter extends  RecyclerView.Adapter<currentOrderAdapt
         else if (status.equals("1"))
             return "Shipped";
         else
-            return "Completed";
+            return "Ready to pickup";
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder

@@ -72,7 +72,7 @@ public class pastOrdersAdapter extends  RecyclerView.Adapter<pastOrdersAdapter.V
         else if (status.equals("1"))
             return "Shipped";
         else
-            return "Completed";
+            return "Ready to pickup";
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
