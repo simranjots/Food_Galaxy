@@ -28,8 +28,8 @@ public class AddMenuActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference menu;
 
-    long id ;
-    int n_id;
+    public static int id = 0;
+    int n_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +56,9 @@ public class AddMenuActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
-                            id = (snapshot.getChildrenCount());
+                            id = (int)(snapshot.getChildrenCount());
                         }
+
 
                     }
 
@@ -66,12 +67,13 @@ public class AddMenuActivity extends AppCompatActivity {
 
                     }
                 });
-                n_id = (int) id + 1;
-                Menu menu_data = new Menu(n_id,menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(), Common.currentRestaurant.getId(),Common.isPredefine,"Demo");
-                menu.child(String.valueOf(n_id)).setValue(menu_data);
+                Toast.makeText(AddMenuActivity.this, "ID" + id, Toast.LENGTH_SHORT).show();
+                Menu menu_data = new Menu( id + 1,menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(), Common.currentRestaurant.getId(),Common.isPredefine,"Demo");
+                menu.child(Integer.toString(id + 1)).setValue(menu_data);
                 Toast.makeText(AddMenuActivity.this, "Item Added", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AddMenuActivity.this,adminOptions.class));
                 finish();
+
             }
         });
 

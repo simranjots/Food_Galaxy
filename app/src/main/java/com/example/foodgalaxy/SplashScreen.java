@@ -12,14 +12,12 @@ import com.example.foodgalaxy.LoginSignup.SignInActivity;
 public class SplashScreen extends AppCompatActivity {
 
 
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
-
-        startActivity(new Intent(SplashScreen.this, SignInActivity.class));
 
         new Handler().postDelayed(new Runnable() {
 

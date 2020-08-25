@@ -52,8 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/dateBooking"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
+        android:layout_marginStart="65dp"
         android:layout_marginTop="61dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="0dp"
@@ -83,8 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/dateTimeOfBooking"
-        android:layout_marginStart="86dp"
-        android:layout_marginLeft="86dp"
+        android:layout_marginStart="65dp"
         android:layout_marginTop="61dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="-3dp"
@@ -96,13 +94,14 @@
 
     <TextView
         android:id="@+id/styleText"
-        android:layout_width="60dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_below="@id/dateTimeOfBooking"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="61dp"
         android:background="@drawable/edittext_back"
-        android:text=" Style"
+        android:text="Style"
+        android:textAlignment="center"
         android:textColor="@color/gray"
         android:textSize="20dp" />
 
