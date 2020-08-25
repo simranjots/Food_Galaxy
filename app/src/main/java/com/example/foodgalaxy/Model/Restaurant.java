@@ -4,19 +4,29 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Restaurant implements Parcelable {
-    private String id;
+    private int id;
     private String name;
     private String address;
     private int cMinsize;
     private int cMaxsize;
     private int Fs_id;
+    private int u_id;
+
+    public int getU_id() {
+        return u_id;
+    }
+
+    public void setU_id(int u_id) {
+        this.u_id = u_id;
+    }
+
     private boolean delivery;
     private String imageLink;
 
     public Restaurant() {
     }
 
-    public Restaurant(String Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink) {
+    public Restaurant(int Id, String name, String address, int cMinSize, int cMaxSize, int FS_Id, boolean isDelivery, String imageLink, int u_id) {
         this.id = Id;
         this.name = name;
         this.address = address;
@@ -25,11 +35,12 @@ public class Restaurant implements Parcelable {
         this.Fs_id = FS_Id;
         this.delivery = isDelivery;
         this.imageLink = imageLink;
+        this.u_id = u_id;
     }
 
 
     protected Restaurant(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         name = in.readString();
         address = in.readString();
         cMinsize = in.readInt();
@@ -37,11 +48,12 @@ public class Restaurant implements Parcelable {
         Fs_id = in.readInt();
         delivery = in.readByte() != 0;
         imageLink = in.readString();
+        u_id = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(address);
         dest.writeInt(cMinsize);
@@ -49,6 +61,7 @@ public class Restaurant implements Parcelable {
         dest.writeInt(Fs_id);
         dest.writeByte((byte) (delivery ? 1 : 0));
         dest.writeString(imageLink);
+        dest.writeInt(u_id);
     }
 
     @Override
@@ -68,11 +81,11 @@ public class Restaurant implements Parcelable {
         }
     };
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getName() {
