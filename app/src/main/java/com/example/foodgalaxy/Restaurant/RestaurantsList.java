@@ -60,8 +60,7 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
     private FirebaseAuth auth;
     FirebaseAuth firebaseAuth;
 
-    FirebaseDatabase db;
-    DatabaseReference category;
+
 
     TextView txtFullName;
     RecyclerView.LayoutManager layoutManager;

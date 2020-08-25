@@ -27,6 +27,7 @@ public class adminOptions extends AppCompatActivity {
         btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Common.isPredefine = false;
 
             }
         });
@@ -34,6 +35,7 @@ public class adminOptions extends AppCompatActivity {
         btnpackages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Common.isPredefine = true;
 
             }
         });

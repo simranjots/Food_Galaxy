@@ -41,6 +41,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_price">Item Price</string>
+    <string name="item_drescription">Item Drescription</string>
+    <string name="add">Add Item</string>
     <array name="array_spicy_level">
         <item>Mild Spicy</item>
         <item>Medium Spicy</item>
