@@ -19,6 +19,7 @@ public class DeliveryAddressDetails extends AppCompatActivity {
     private EditText unitNo, street, city, postal, country;
     private Button deliverHere;
     private boolean IsDelivery;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
