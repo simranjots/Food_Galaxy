@@ -10,14 +10,14 @@ public class Restaurant implements Parcelable {
     private int cMinsize;
     private int cMaxsize;
     private int Fs_id;
-    private int u_id;
+    private int uid;
 
-    public int getU_id() {
-        return u_id;
+    public int getUid() {
+        return uid;
     }
 
-    public void setU_id(int u_id) {
-        this.u_id = u_id;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     private boolean delivery;
@@ -35,7 +35,7 @@ public class Restaurant implements Parcelable {
         this.Fs_id = FS_Id;
         this.delivery = isDelivery;
         this.imageLink = imageLink;
-        this.u_id = u_id;
+        this.uid = u_id;
     }
 
 
@@ -48,7 +48,7 @@ public class Restaurant implements Parcelable {
         Fs_id = in.readInt();
         delivery = in.readByte() != 0;
         imageLink = in.readString();
-        u_id = in.readInt();
+        uid = in.readInt();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Restaurant implements Parcelable {
         dest.writeInt(Fs_id);
         dest.writeByte((byte) (delivery ? 1 : 0));
         dest.writeString(imageLink);
-        dest.writeInt(u_id);
+        dest.writeInt(uid);
     }
 
     @Override

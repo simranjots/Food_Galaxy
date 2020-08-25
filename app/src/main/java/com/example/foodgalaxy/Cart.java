@@ -258,7 +258,7 @@ public class Cart extends AppCompatActivity {
                                 Common.currentUser.getId(),
                                 txtTotalPrice.getText().toString(),
                                 "0",
-                                address,
+                                address == null ? "" : address ,
                                 formatter.format(date),
                                 jsonObject.getJSONObject("response").getString("state"),
                                 Common.dateOfBooking,

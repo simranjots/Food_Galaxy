@@ -1,8 +1,11 @@
 package com.example.foodgalaxy.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Orders {
+public class Orders implements Parcelable {
 
     private long id;
     private int r_Id;
@@ -16,6 +19,30 @@ public class Orders {
     private List<CartItem> foods;
 
     public Orders(){}
+
+    protected Orders(Parcel in) {
+        id = in.readLong();
+        r_Id = in.readInt();
+        u_Id = in.readLong();
+        totalPrice = in.readString();
+        status = in.readString();
+        deliveryAddress = in.readString();
+        dateOrdered = in.readString();
+        paymentState = in.readString();
+        dateOfBooking = in.readString();
+    }
+
+    public static final Creator<Orders> CREATOR = new Creator<Orders>() {
+        @Override
+        public Orders createFromParcel(Parcel in) {
+            return new Orders(in);
+        }
+
+        @Override
+        public Orders[] newArray(int size) {
+            return new Orders[size];
+        }
+    };
 
     public String getPaymentState() {
         return paymentState;
@@ -109,5 +136,23 @@ public class Orders {
 
     public void setDateOrdered(String dateOrdered) {
         this.dateOrdered = dateOrdered;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeInt(r_Id);
+        dest.writeLong(u_Id);
+        dest.writeString(totalPrice);
+        dest.writeString(status);
+        dest.writeString(deliveryAddress);
+        dest.writeString(dateOrdered);
+        dest.writeString(paymentState);
+        dest.writeString(dateOfBooking);
     }
 }

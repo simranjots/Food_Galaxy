@@ -188,10 +188,8 @@ public class RestaurantsList extends AppCompatActivity implements NavigationView
         }
 
         return result;
-
-
-
     }
+
     private Boolean checkPermission()
     {
         int permissionState = ActivityCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION );

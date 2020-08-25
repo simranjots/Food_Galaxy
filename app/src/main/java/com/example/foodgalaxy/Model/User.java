@@ -3,10 +3,10 @@ package com.example.foodgalaxy.Model;
 public class User {
     private long id;
     private String rest_id;
-    private String Name;
-    private String Password;
-    private String Phone;
-    private String Address;
+    private String name;
+    private String password;
+    private String phone;
+    private String address;
     private boolean isStaff;
 
     public User() {
@@ -15,10 +15,10 @@ public class User {
     public User(long id, String name, String password, String phone, String address) {
         this.id = id;
         this.rest_id = "";
-        Name = name;
-        Password = password;
-        Phone = phone;
-        Address = address;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
         this.isStaff = false;
     }
 
@@ -39,35 +39,35 @@ public class User {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public boolean getIsStaff() {
