@@ -18,16 +18,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Kuldeep"
+        android:text="Welcome"
+        android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
     <Button
         android:id="@+id/sign_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_back"
         android:text="@string/btn_sign_out"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textStyle="bold" />
 
 

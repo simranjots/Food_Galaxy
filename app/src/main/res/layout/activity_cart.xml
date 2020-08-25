@@ -17,7 +17,7 @@
         android:layout_alignParentBottom="true"
         app:cardCornerRadius="18dp"
         android:elevation="4dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/input_register_bg"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
@@ -69,15 +69,16 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearLayout3"
                     android:background="@android:color/transparent">
+
                     <Button
                         android:id="@+id/btnPlaceOrder"
-                        android:text="Place Order"
-                        android:background="@android:color/black"
-                        android:textColor="@android:color/white"
-
-                        android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+
+                        android:background="@drawable/btn_back"
+                        android:text="Place Order"
+                        android:textColor="@android:color/black"
 
                         />
                 </LinearLayout>

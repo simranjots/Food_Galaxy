@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:outlineSpotShadowColor="@android:color/background_dark"
+    android:background="@color/gray"
     android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +52,7 @@
             <TextView
                 android:id="@+id/menu_name"
                 android:text="Name of Menu"
-                android:textColor="@android:color/background_dark"
+                android:textColor="@android:color/black"
                 android:textSize="20dp"
                 android:fontFamily="sans-serif-medium"
                 android:layout_width="wrap_content"
@@ -58,7 +60,7 @@
             <TextView
                 android:id="@+id/menu_address"
                 android:text="address of Menu"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/black"
                 android:textSize="12dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-light"
@@ -94,16 +96,16 @@
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal"
                     >
+
                     <Button
                         android:id="@+id/menu_direction"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="direction"
-                        android:textSize="12dp"
+                        android:background="@drawable/btn_back"
                         android:fontFamily="sans-serif-medium"
-                        android:background="@color/colorPrimaryDark"
-                        android:textColor="@color/cardview_light_background"
-                        >
+                        android:text="direction"
+                        android:textColor="@color/black"
+                        android:textSize="12dp">
 
                     </Button>
                 </LinearLayout>
