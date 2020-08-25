@@ -12,5 +12,6 @@ public class Common {
     public static String dateOfBooking;
     public static Restaurant currentRestaurant;
     public static boolean isCurrentOrder = false;
+    public static boolean isPredefine = false;
 
 }
