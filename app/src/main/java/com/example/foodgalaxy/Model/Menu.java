@@ -4,34 +4,34 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Menu implements Parcelable {
-     private String id;
+     private int id;
      private String name;
      private double price;
      private String description;
      private int R_id;
-     private boolean ipackage;
+     private boolean predefinedMenu;
      private String imageLink;
 
     public Menu() {
     }
 
-    public Menu(String id, String name, double price, String description, int r_id, boolean ipackage, String imageLink) {
+    public Menu(int id, String name, double price, String description, int r_id, boolean predefinedMenu, String imageLink) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
         R_id = r_id;
-        this.ipackage = ipackage;
+        this.predefinedMenu = predefinedMenu;
         this.imageLink = imageLink;
     }
 
     protected Menu(Parcel in) {
-        id = in.readString();
+        id = in.readInt();
         name = in.readString();
         price = in.readDouble();
         description = in.readString();
         R_id = in.readInt();
-        ipackage = in.readByte() != 0;
+        predefinedMenu = in.readByte() != 0;
         imageLink = in.readString();
     }
 
@@ -47,11 +47,11 @@ public class Menu implements Parcelable {
         }
     };
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -87,12 +87,12 @@ public class Menu implements Parcelable {
         R_id = r_Id;
     }
 
-    public boolean ipackage() {
-        return ipackage;
+    public boolean isPredefinedMenu() {
+        return predefinedMenu;
     }
 
-    public void setPackage(boolean ipackage) {
-        this.ipackage = ipackage;
+    public void setPredefinedMenu(boolean predefinedMenu) {
+        this.predefinedMenu = predefinedMenu;
     }
 
     public String getImageLink() {
@@ -112,12 +112,12 @@ public class Menu implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeInt(id);
         dest.writeString(name);
         dest.writeDouble(price);
         dest.writeString(description);
         dest.writeInt(R_id);
-        dest.writeByte((byte) (ipackage ? 1 : 0));
+        dest.writeByte((byte) (predefinedMenu ? 1 : 0));
         dest.writeString(imageLink);
     }
 }

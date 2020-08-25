@@ -66,9 +66,9 @@ public class PreDefinedMenuFragment extends Fragment {
                     }
                     Toast.makeText(getActivity(), "size:" + menuList.size(),
                             Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity(), "1: " + menuList.get(0).ipackage(),
+                    Toast.makeText(getActivity(), "1: " + menuList.get(0).isPredefinedMenu(),
                             Toast.LENGTH_LONG).show();
-                    Toast.makeText(getActivity(), "2: " + menuList.get(1).ipackage(),
+                    Toast.makeText(getActivity(), "2: " + menuList.get(1).isPredefinedMenu(),
                             Toast.LENGTH_LONG).show();
 
                     menuList = filterdata(menuList);
@@ -111,9 +111,9 @@ public class PreDefinedMenuFragment extends Fragment {
 
         for(Menu m : menuList)
         {
-            Toast.makeText(getActivity(), "package:" + m.ipackage(),
+            Toast.makeText(getActivity(), "package:" + m.isPredefinedMenu(),
                     Toast.LENGTH_LONG).show();
-            if(m.ipackage() && m.getR_Id() == restaurant_Id)
+            if(m.isPredefinedMenu() && m.getR_Id() == restaurant_Id)
             {
                 result.add(m);
             }

@@ -49,8 +49,8 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
     ElegantNumberButton numberButton;
     //RatingBar ratingBar;
 
-    String m;
-    String pdm;
+    int m;
+    int pdm;
     String foodId = "";
 
     FirebaseDatabase database;
@@ -81,8 +81,8 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         btnRating = findViewById(R.id.btn_rating);
         //ratingBar = findViewById(R.id.ratingBar);
 
-        m = getIntent().getStringExtra("menuDetail");
-        pdm = getIntent().getStringExtra("preDefinedmenuDetail");
+        m = getIntent().getIntExtra("menuDetail",0);
+        pdm = getIntent().getIntExtra("preDefinedmenuDetail",0);
 
 
         btnRating.setOnClickListener(new View.OnClickListener() {
@@ -187,21 +187,21 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
     }
 
-    private void getDetailFood(String m,String pdm) {
-        if(m != null)
+    private void getDetailFood(int m,int pdm) {
+        if(m != 0)
         {
             menu.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    currentFood= snapshot.child(m).getValue(Menu.class);
+                    currentFood= snapshot.child(Integer.toString(m)).getValue(Menu.class);
 
                     Picasso.with(FoodDetail.this).load(currentFood.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(food_image);
                     collapsingToolbarLayout.setTitle(currentFood.getName());
                     food_price.setText("$"+currentFood.getPrice());
                     food_name.setText(currentFood.getName());
                     food_description.setText(currentFood.getDescription());
-                    foodId = currentFood.getId();
+                    foodId = Integer.toString(currentFood.getId());
                     mid = foodId;
 
                 }
@@ -214,19 +214,19 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
 
         }
-        if(pdm != null)
+        if(pdm != 0)
         {
             menu.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    currentFood= snapshot.child(pdm).getValue(Menu.class);
+                    currentFood= snapshot.child(Integer.toString(pdm)).getValue(Menu.class);
 
                     Picasso.with(FoodDetail.this).load(currentFood.getImageLink()).placeholder(R.drawable.powered_by_google_dark).into(food_image);
                     collapsingToolbarLayout.setTitle(currentFood.getName());
                     food_price.setText("$"+currentFood.getPrice());
                     food_name.setText(currentFood.getName());
                     food_description.setText(currentFood.getDescription());
-                    foodId = currentFood.getId();
+                    foodId = Integer.toString(currentFood.getId());
                     pid = foodId;
 
 

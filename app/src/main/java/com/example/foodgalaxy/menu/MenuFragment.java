@@ -102,7 +102,7 @@ public class MenuFragment extends Fragment {
 
         for(Menu m : menuList)
         {
-            if(m.ipackage() == false && m.getR_Id() == restaurant_Id )
+            if(m.isPredefinedMenu() == false && m.getR_Id() == restaurant_Id )
             {
                 result.add(m);
             }
