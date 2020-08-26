@@ -19,6 +19,7 @@
         <activity android:name=".AddMenuActivity"></activity>
         <activity android:name=".currentOrderDetail" />
         <activity android:name=".currentOrdersList" />
+        <activity android:name=".EditMenuActivity" />
         <activity android:name=".OrderStatus" />
         <activity android:name=".Order.OrderPlaced" />
         <activity android:name=".menu.FoodDetail" />

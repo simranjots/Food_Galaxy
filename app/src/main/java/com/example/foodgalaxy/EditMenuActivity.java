@@ -3,6 +3,7 @@ package com.example.foodgalaxy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class EditMenuActivity extends AppCompatActivity {
 
     long id ;
     int n_id;
+    Menu m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class EditMenuActivity extends AppCompatActivity {
         //Init Firebase
         database= FirebaseDatabase.getInstance();
         menu = database.getReference().child("Menu");
+        m = getIntent().getParcelableExtra("adminMenuDetail");
+
 
         set_Data();
 
@@ -59,8 +63,10 @@ public class EditMenuActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Menu menu_data = new Menu(r.getId(),menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(), Common.currentRestaurant.getId(),Common.isPredefine,"Demo");
-                        menu.child(String.valueOf(n_id)).setValue(menu_data);
+                        Menu menu_data = new Menu(m.getId(),menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(),m.getR_Id(),m.isPredefinedMenu(),"Demo");
+                        menu.child(String.valueOf(m.getId())).setValue(menu_data);
+                        startActivity(new Intent(EditMenuActivity.this,adminOptions.class));
+                        finish();
                     }
 
                     @Override
@@ -76,24 +82,9 @@ public class EditMenuActivity extends AppCompatActivity {
     }
 
     public void set_Data(){
-        menu.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                r = snapshot.child().getValue(Menu.class);
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        menu_name.setText(r.getName());
-        menu_price.setText(String.valueOf(r.getPrice()));
-        menu_description.setText(r.getDescription());
+        menu_name.setText(m.getName());
+        menu_price.setText(Double.toString(m.getPrice()));
+        menu_description.setText(m.getDescription());
     }
 
 }

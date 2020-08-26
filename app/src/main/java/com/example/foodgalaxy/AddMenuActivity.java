@@ -96,7 +96,6 @@ public class AddMenuActivity extends AppCompatActivity {
 
     public void addData(int size)
     {
-        Toast.makeText(AddMenuActivity.this, "ID" + size, Toast.LENGTH_SHORT).show();
         Menu menu_data = new Menu( size ,menu_name.getText().toString(),Double.parseDouble(menu_price.getText().toString()),menu_description.getText().toString(), Common.currentRestaurant.getId(),Common.isPredefine,"Demo");
         menu.child(Integer.toString(size )).setValue(menu_data);
         Toast.makeText(AddMenuActivity.this, "Item Added", Toast.LENGTH_SHORT).show();

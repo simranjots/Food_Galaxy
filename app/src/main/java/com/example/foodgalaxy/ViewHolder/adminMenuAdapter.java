@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodgalaxy.Common.Common;
+import com.example.foodgalaxy.EditMenuActivity;
 import com.example.foodgalaxy.Model.Restaurant;
 import com.example.foodgalaxy.adminOptions;
 import com.example.foodgalaxy.menu.FoodDetail;
@@ -53,7 +54,7 @@ public class adminMenuAdapter extends  RecyclerView.Adapter<adminMenuAdapter.Vie
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(v.getContext(), adminOptions.class);
+                Intent intent = new Intent(v.getContext(), EditMenuActivity.class);
                 intent.putExtra("adminMenuDetail",rList.get(position));
                 //Common.currentRestaurant = rList.get(position);
                 v.getContext().startActivity(intent);
