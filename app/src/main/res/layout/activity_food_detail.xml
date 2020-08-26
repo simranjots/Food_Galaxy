@@ -55,18 +55,6 @@
         app:useCompatPadding="true"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_rating"
-        android:src="@drawable/ic_restaurant_menu_black_24dp"
-        android:backgroundTint="@android:color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:elevation="6dp"
-        app:layout_anchor="@id/app_bar_layout"
-        app:layout_anchorGravity="bottom|right"
-        android:layout_marginEnd="70dp"
-        app:useCompatPadding="true"
-        />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"

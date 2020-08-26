@@ -45,6 +45,7 @@
     <string name="item_price">Item Price</string>
     <string name="item_drescription">Item Drescription</string>
     <string name="add">Add Item</string>
+    <string name="save">Save</string>
     <array name="array_spicy_level">
         <item>Mild Spicy</item>
         <item>Medium Spicy</item>
